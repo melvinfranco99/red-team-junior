@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.312
+Casi todas las empresas gestionan sus equipos con Windows y Active Directory.
+
+2
+00:00:05.262 --> 00:00:10.125
+Si en la oferta hablan de infraestructuras internas, gran parte es esto.
+
+3
+00:00:10.125 --> 00:00:18.300
+Aunque es un puesto júnior, necesitas conocer el mapa: qué es un dominio, cómo se autentican los usuarios y qué herramientas suenan.
+
+4
+00:00:18.300 --> 00:00:20.812
+Vamos a ello sin agobios.
+
+5
+00:00:21.798 --> 00:00:26.073
+Empecemos por el corazón de la red Windows: Active Directory.
+
+6
+00:00:26.023 --> 00:00:34.423
+Imagínalo como la recepción de un gran edificio, que tiene la lista de todos los empleados, sus llaves y a qué salas puede entrar cada uno.
+
+7
+00:00:34.423 --> 00:00:38.923
+Es una base de datos central de usuarios, equipos y permisos.
+
+8
+00:00:38.923 --> 00:00:43.273
+El servidor que la guarda y la valida se llama Controlador de Dominio.
+
+9
+00:00:43.273 --> 00:00:51.473
+Dentro encontrarás conceptos como el dominio, los usuarios y grupos, las políticas o GPO, y las unidades organizativas.
+
+10
+00:00:51.473 --> 00:00:59.998
+En una auditoría interna, Active Directory es casi siempre el objetivo número uno, porque quien lo controla, controla toda la empresa.
+
+11
+00:01:00.952 --> 00:01:05.214
+Igual que en Linux, hay puertos que delatan un entorno Windows.
+
+12
+00:01:05.164 --> 00:01:09.914
+El ochenta y ocho es Kerberos, el sistema de autenticación del dominio.
+
+13
+00:01:09.914 --> 00:01:18.427
+El cuatrocientos cuarenta y cinco es SMB, que sirve para compartir ficheros y, a menudo, para ejecutar comandos en remoto.
+
+14
+00:01:18.427 --> 00:01:23.752
+El trescientos ochenta y nueve es LDAP, que permite consultar el directorio.
+
+15
+00:01:23.752 --> 00:01:27.902
+El tres mil trescientos ochenta y nueve es el escritorio remoto.
+
+16
+00:01:27.902 --> 00:01:33.427
+Y el cinco mil novecientos ochenta y cinco es WinRM, la administración remota.
+
+17
+00:01:33.427 --> 00:01:39.276
+Cuando veas estos puertos en un escaneo, piensa inmediatamente en Windows y Active Directory.
+
+18
+00:01:40.226 --> 00:01:45.901
+Windows no guarda tu contraseña en texto claro, sino su hash, una huella irreversible.
+
+19
+00:01:45.851 --> 00:01:50.401
+Alrededor de esto hay dos técnicas ofensivas que debes poder nombrar.
+
+20
+00:01:50.401 --> 00:02:00.113
+La primera es Pass-the-Hash: en ciertos casos, basta con tener ese hash, sin conocer la contraseña real, para autenticarte haciéndote pasar por el usuario.
+
+21
+00:02:00.113 --> 00:02:08.076
+La segunda es Kerberoasting: consiste en pedir tickets de servicio y tratar de crackear offline la contraseña de las cuentas de servicio.
+
+22
+00:02:08.076 --> 00:02:18.788
+No necesitas ejecutarlas para la entrevista júnior, pero sí explicar la idea: en Windows las credenciales se manejan como hashes, y hay técnicas para reutilizarlos o romperlos.
+
+23
+00:02:19.764 --> 00:02:24.864
+Para orientarte en una máquina Windows, hay comandos equivalentes a los de Linux.
+
+24
+00:02:24.814 --> 00:02:29.201
+whoami barra all te da tu usuario, grupos y privilegios.
+
+25
+00:02:29.201 --> 00:02:35.564
+systeminfo revela la versión y los parches instalados, útil para buscar vulnerabilidades conocidas.
+
+26
+00:02:35.564 --> 00:02:38.476
+Y net user lista los usuarios.
+
+27
+00:02:38.476 --> 00:02:46.751
+PowerShell es, a la vez, la navaja suiza de administración y una potente herramienta de ataque, por eso las empresas vigilan su uso.
+
+28
+00:02:46.751 --> 00:02:57.926
+Finalmente, hay tres nombres que debes conocer aunque no los domines: BloodHound, que dibuja las rutas de ataque dentro de Active Directory; Impacket, una suite de scripts; y CrackMapExec.
+
+29
+00:02:57.926 --> 00:03:01.326
+Saber qué hacen ya suma puntos en la entrevista.
+
+30
+00:03:02.278 --> 00:03:08.803
+Para cerrar, quédate con el mapa mental de un ataque interno, que te permitirá hablar el idioma del equipo.
+
+31
+00:03:08.753 --> 00:03:12.828
+Primero entras, comprometiendo un equipo o un usuario.
+
+32
+00:03:12.828 --> 00:03:18.203
+Luego enumeras: usuarios, grupos y recursos compartidos por SMB.
+
+33
+00:03:18.203 --> 00:03:23.115
+Después escalas privilegios, de usuario normal a administrador local.
+
+34
+00:03:23.115 --> 00:03:27.090
+A continuación te mueves lateralmente de una máquina a otra.
+
+35
+00:03:27.090 --> 00:03:35.065
+Y el objetivo final es llegar al Controlador de Dominio y conseguir ser administrador del dominio, es decir, dueño de toda la red.
+
+36
+00:03:35.065 --> 00:03:40.853
+Como júnior, lo importante es entender este flujo, no ejecutarlo entero el primer día.
+
+37
+00:03:40.853 --> 00:03:43.690
+Con esto cerramos los fundamentos.

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:08.187
+En este vídeo entramos en el corazón del A cero uno y el A cero siete de OWASP: los fallos de control de acceso y autenticación.
+
+2
+00:00:08.187 --> 00:00:19.800
+Verás qué es un IDOR, la diferencia entre autenticación y autorización, cómo es un token JWT por dentro y los fallos típicos de las APIs REST, que son cada vez más el objetivo principal.
+
+3
+00:00:20.790 --> 00:00:24.777
+Primero, dos palabras que se confunden constantemente.
+
+4
+00:00:24.727 --> 00:00:32.665
+La autenticación responde a la pregunta quién eres: es verificar tu identidad con un login y, idealmente, un segundo factor.
+
+5
+00:00:32.665 --> 00:00:38.590
+La autorización responde a qué puedes hacer: son los permisos que tienes una vez identificado.
+
+6
+00:00:38.590 --> 00:00:46.590
+El fallo aparece cuando estás perfectamente autenticado, pero la autorización está rota y puedes hacer cosas que no te corresponden.
+
+7
+00:00:46.590 --> 00:00:51.052
+Eso es el control de acceso roto, la categoría A cero uno.
+
+8
+00:00:51.052 --> 00:00:58.315
+Distinguir autenticación de autorización con claridad es una pregunta de entrevista casi segura, así que tenlo muy claro.
+
+9
+00:00:59.296 --> 00:01:09.221
+El fallo estrella del control de acceso es el IDOR: acceder a un recurso que no es tuyo simplemente cambiando un identificador, porque el servidor no comprueba de quién es.
+
+10
+00:01:09.221 --> 00:01:16.096
+Si pides tu pedido mil uno y, al cambiarlo por mil dos, ves el pedido de otro cliente, eso es un IDOR.
+
+11
+00:01:16.096 --> 00:01:20.721
+Relacionado está la escalada de privilegios, que tiene dos sabores.
+
+12
+00:01:20.721 --> 00:01:25.221
+La horizontal es acceder a datos de otro usuario de tu mismo nivel.
+
+13
+00:01:25.221 --> 00:01:31.571
+Y la vertical es ganar permisos de un rol superior, por ejemplo pasar de usuario normal a administrador.
+
+14
+00:01:31.571 --> 00:01:36.433
+En Burp, la extensión Autorize automatiza la detección de estos fallos.
+
+15
+00:01:37.418 --> 00:01:41.655
+Hoy muchas APIs usan tokens JWT para la sesión.
+
+16
+00:01:41.605 --> 00:01:49.905
+Un JWT tiene tres partes separadas por puntos: la cabecera, el payload y la firma, todo en Base64.
+
+17
+00:01:49.905 --> 00:01:58.730
+Algo crucial que debes saber: el payload no está cifrado, solo codificado, así que cualquiera puede leerlo; nunca se meten secretos ahí.
+
+18
+00:01:58.730 --> 00:02:11.780
+Los fallos típicos: el llamado alg none, donde el servidor acepta tokens sin firma válida; o que el servidor no verifique bien la firma, lo que te permitiría cambiar en el payload tu rol de usuario a administrador y colártelo.
+
+19
+00:02:11.780 --> 00:02:16.818
+En Burp tienes la extensión JWT Editor para jugar con todo esto.
+
+20
+00:02:17.796 --> 00:02:21.958
+Las APIs tienen su propio OWASP, el API Security Top Ten.
+
+21
+00:02:21.908 --> 00:02:30.258
+Los fallos más frecuentes: el primero, llamado BOLA, es el IDOR a nivel de objeto, y es el número uno en APIs con diferencia.
+
+22
+00:02:30.258 --> 00:02:35.483
+El segundo es la autenticación rota, con logins o tokens mal implementados.
+
+23
+00:02:35.483 --> 00:02:40.783
+El cuarto es la falta de límites de peticiones, que permite fuerza bruta y abuso.
+
+24
+00:02:40.783 --> 00:02:46.683
+Y el quinto, llamado BFLA, es acceder a funciones reservadas a otro rol.
+
+25
+00:02:46.683 --> 00:02:57.733
+Para probarlas, capturas las llamadas con Burp, buscas identificadores que cambiar, repites peticiones con otra sesión y revisas la documentación Swagger en busca de endpoints ocultos.
+
+26
+00:02:58.702 --> 00:03:01.652
+Para cerrar, el método práctico.
+
+27
+00:03:01.602 --> 00:03:05.014
+Capturas todas las llamadas de la aplicación con Burp.
+
+28
+00:03:05.014 --> 00:03:15.189
+Repites peticiones sensibles usando otra sesión distinta, o sin token, para ver si el servidor comprueba de verdad los permisos; la extensión Autorize lo hace por ti.
+
+29
+00:03:15.189 --> 00:03:20.839
+Manipulas el token JWT probando el truco del alg none y los cambios de rol.
+
+30
+00:03:20.839 --> 00:03:28.114
+Y revisas la documentación de la API, como Swagger u OpenAPI, para descubrir endpoints que no están enlazados.
+
+31
+00:03:28.114 --> 00:03:36.314
+Para practicar todo esto sin riesgo, tienes la PortSwigger Academy y APIs deliberadamente vulnerables como crAPI o VAmPI.
+
+32
+00:03:36.314 --> 00:03:38.739
+Pasamos al nivel avanzado.

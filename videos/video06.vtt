@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.875
+Este vídeo te da el lenguaje con el que hablarás de vulnerabilidades y escribirás informes.
+
+2
+00:00:05.825 --> 00:00:20.725
+Vas a entender de una vez por todas las siglas CVE, CWE, CVSS y EPSS, cómo se lee una puntuación de gravedad y, sobre todo, cómo se priorizan cien vulnerabilidades, que es justo lo que pide la oferta.
+
+3
+00:00:21.678 --> 00:00:24.840
+Cuatro siglas ordenan todo este mundo.
+
+4
+00:00:24.790 --> 00:00:31.053
+El CVE es el identificador único de una vulnerabilidad concreta, como un número de expediente.
+
+5
+00:00:31.053 --> 00:00:36.890
+El CWE es el tipo o categoría de debilidad, por ejemplo la inyección SQL.
+
+6
+00:00:36.890 --> 00:00:41.415
+El CVSS es la puntuación de gravedad, de cero a diez.
+
+7
+00:00:41.415 --> 00:00:46.815
+Y el EPSS estima la probabilidad de que esa vulnerabilidad se explote pronto.
+
+8
+00:00:46.815 --> 00:01:01.453
+Una analogía: el CWE es la enfermedad, por ejemplo la gripe; el CVE es el paciente concreto, la gripe de Juan el martes; el CVSS es la gravedad de su caso; y el EPSS, la probabilidad de contagio.
+
+9
+00:01:01.453 --> 00:01:04.665
+Con esta imagen no los volverás a confundir.
+
+10
+00:01:05.632 --> 00:01:12.219
+La puntuación CVSS no sale de la nada: se calcula a partir de un vector con varias métricas base.
+
+11
+00:01:12.169 --> 00:01:18.207
+El vector de ataque indica desde dónde se explota: por red, que es lo más grave, o en local.
+
+12
+00:01:18.207 --> 00:01:22.769
+La complejidad dice si es fácil o requiere condiciones especiales.
+
+13
+00:01:22.769 --> 00:01:29.344
+Los privilegios requeridos y la interacción del usuario miden si hace falta ya tener permisos o engañar a alguien.
+
+14
+00:01:29.344 --> 00:01:37.257
+Y las tres últimas, ce, i y a, miden el impacto en la confidencialidad, la integridad y la disponibilidad.
+
+15
+00:01:37.257 --> 00:01:44.994
+No necesitas calcularlo a mano: en el laboratorio de este módulo tienes una calculadora interactiva para que juegues con el vector.
+
+16
+00:01:45.986 --> 00:01:49.498
+La nota se traduce en una severidad con nombre.
+
+17
+00:01:49.448 --> 00:01:53.248
+De nueve a diez, es crítica: hay que actuar ya.
+
+18
+00:01:53.248 --> 00:01:56.286
+De siete a ocho con nueve, alta.
+
+19
+00:01:56.286 --> 00:01:59.423
+De cuatro a seis con nueve, media.
+
+20
+00:01:59.423 --> 00:02:02.311
+Y por debajo de cuatro, baja.
+
+21
+00:02:02.311 --> 00:02:09.136
+Estas etiquetas son las que verá el cliente en tu informe, así que conviene que las tengas automatizadas en la cabeza.
+
+22
+00:02:09.136 --> 00:02:17.011
+Un nueve coma ocho es casi el peor caso posible: explotable por red, fácil, sin privilegios y con impacto total.
+
+23
+00:02:18.012 --> 00:02:24.049
+Y aquí viene el error típico de un júnior: ordenar los hallazgos solo por la nota CVSS.
+
+24
+00:02:23.999 --> 00:02:27.112
+El riesgo real combina cuatro cosas.
+
+25
+00:02:27.112 --> 00:02:30.537
+La gravedad, que es el CVSS.
+
+26
+00:02:30.537 --> 00:02:34.249
+La explotabilidad: ¿existe ya un exploit público?
+
+27
+00:02:34.249 --> 00:02:36.587
+qué dice el EPSS?
+
+28
+00:02:36.587 --> 00:02:40.949
+La exposición: ¿está en Internet o en una red interna aislada?
+
+29
+00:02:40.949 --> 00:02:46.787
+Y la criticidad del activo: ¿afecta a datos de clientes o a un sistema crítico de negocio?
+
+30
+00:02:46.787 --> 00:02:57.549
+Por eso, una vulnerabilidad media en un servidor expuesto a Internet, con exploit público y datos sensibles, puede ser más urgente que una crítica en un sistema de pruebas aislado.
+
+31
+00:02:57.549 --> 00:03:01.387
+Saber decir esto en una entrevista marca la diferencia.
+
+32
+00:03:02.350 --> 00:03:08.037
+Todo esto se enmarca en un ciclo que es, literalmente, lo que pide la oferta.
+
+33
+00:03:07.987 --> 00:03:14.712
+Primero se descubren las vulnerabilidades, con escáneres como Nessus u OpenVAS y con el pentest manual.
+
+34
+00:03:14.712 --> 00:03:21.062
+Segundo, se validan, quitando los falsos positivos, porque un escáner genera mucho ruido.
+
+35
+00:03:21.062 --> 00:03:24.575
+Tercero, se priorizan por riesgo real.
+
+36
+00:03:24.575 --> 00:03:28.775
+Cuarto, se remedia, con un parche o una mitigación.
+
+37
+00:03:28.775 --> 00:03:31.887
+Y quinto, se verifica con un retest.
+
+38
+00:03:31.887 --> 00:03:39.112
+Tu valor como analista no es lanzar el escáner, que eso lo hace cualquiera: tu valor es validar y priorizar con criterio.
+
+39
+00:03:39.112 --> 00:03:43.500
+Vamos ahora con la estrella de la entrevista: el OWASP Top Ten.

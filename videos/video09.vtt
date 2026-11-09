@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:07.762
+Nmap es la herramienta de escaneo más famosa del mundo, y la oferta la cita por su nombre, así que vamos a dominarla.
+
+2
+00:00:07.762 --> 00:00:17.325
+Verás cómo descubrir equipos, cómo detectar servicios y versiones, qué significan los estados de un puerto y cómo usar los scripts para buscar vulnerabilidades.
+
+3
+00:00:17.325 --> 00:00:21.562
+Recuerda: escanear sin autorización puede ser delito.
+
+4
+00:00:22.542 --> 00:00:25.879
+Empecemos diseccionando un comando típico.
+
+5
+00:00:25.829 --> 00:00:33.554
+La estructura es siempre la misma: nmap, luego el tipo de escaneo, luego las opciones y, al final, el objetivo.
+
+6
+00:00:33.554 --> 00:00:39.429
+Por ejemplo, guion ese ese es el escaneo SYN, rápido y sigiloso.
+
+7
+00:00:39.429 --> 00:00:43.954
+Guion ese uve le pide que detecte el servicio y la versión de cada puerto.
+
+8
+00:00:43.954 --> 00:00:47.729
+Guion pe guion escanea los sesenta y cinco mil puertos.
+
+9
+00:00:47.729 --> 00:00:53.892
+Y guion o ene guarda la salida en un fichero, porque en una auditoría siempre hay que dejar evidencias.
+
+10
+00:00:53.892 --> 00:01:01.279
+Recuerda la regla: el objetivo, ya sea una dirección, un rango o un dominio, va siempre al final del comando.
+
+11
+00:01:02.272 --> 00:01:09.322
+En la práctica, primero descubres qué hay vivo con guion ese ene, que hace un barrido rápido sin escanear puertos.
+
+12
+00:01:09.272 --> 00:01:17.972
+Una vez identificada la víctima, lanzas guion ese uve, que te devuelve una tabla con el puerto, el estado, el servicio y la versión.
+
+13
+00:01:17.972 --> 00:01:23.934
+Y fíjate en la versión, porque es oro puro: con ella buscas vulnerabilidades conocidas.
+
+14
+00:01:23.934 --> 00:01:33.634
+Por ejemplo, si ves el servidor de ficheros vsftpd versión dos punto tres punto cuatro, esa versión concreta es famosa por tener una puerta trasera.
+
+15
+00:01:33.634 --> 00:01:38.884
+De la versión al CVE, y del CVE al exploit: ese es el camino.
+
+16
+00:01:39.866 --> 00:01:44.603
+Nmap clasifica cada puerto en un estado, y debes saber interpretarlo.
+
+17
+00:01:44.553 --> 00:01:52.741
+Abierto significa que hay un servicio aceptando conexiones: es lo que más nos interesa, para identificar la versión y buscar fallos.
+
+18
+00:01:52.741 --> 00:01:58.116
+Cerrado significa que el equipo responde, pero no hay nadie escuchando en ese puerto.
+
+19
+00:01:58.116 --> 00:02:06.078
+Y filtrado significa que un cortafuegos se está tragando nuestra sonda y no obtenemos respuesta, así que Nmap no sabe qué hay detrás.
+
+20
+00:02:06.078 --> 00:02:13.128
+Distinguir cerrado de filtrado es una pregunta clásica de entrevista: cerrado responde, filtrado no responde.
+
+21
+00:02:14.124 --> 00:02:20.486
+Pero Nmap no solo escanea: tiene un motor de scripts llamado NSE que automatiza comprobaciones.
+
+22
+00:02:20.436 --> 00:02:23.124
+Hay más de seiscientos scripts.
+
+23
+00:02:23.124 --> 00:02:33.974
+El más vistoso es guion guion script vuln, que lanza todos los scripts de la categoría de vulnerabilidades contra el objetivo y te dice cuáles son explotables, dándote incluso el CVE.
+
+24
+00:02:33.974 --> 00:02:45.874
+También está guion ese ce, que ejecuta los scripts por defecto, y guion a mayúscula, el modo agresivo, que junta la detección de sistema operativo, versiones y scripts en un solo comando.
+
+25
+00:02:45.874 --> 00:02:51.199
+Con esto, Nmap pasa de hacer un plano a señalarte directamente las puertas débiles.
+
+26
+00:02:52.150 --> 00:02:56.225
+Pongamos el flujo en orden, como en una auditoría real.
+
+27
+00:02:56.175 --> 00:03:00.737
+Primero, descubres qué equipos están vivos en el rango autorizado.
+
+28
+00:03:00.737 --> 00:03:10.287
+Segundo, escaneas todos los puertos de cada equipo, no solo los mil más comunes, porque los servicios escondidos en puertos raros son los más jugosos.
+
+29
+00:03:10.287 --> 00:03:16.025
+Tercero, sobre los puertos abiertos, lanzas la detección de versiones y los scripts.
+
+30
+00:03:16.025 --> 00:03:20.675
+Y cuarto, buscas vulnerabilidades y guardas todas las evidencias.
+
+31
+00:03:20.675 --> 00:03:29.187
+En la web tienes un laboratorio, el constructor de comandos Nmap, donde puedes marcar opciones y ver el comando resultante con su explicación.
+
+32
+00:03:29.187 --> 00:03:31.612
+Úsalo para perder el miedo.
+
+33
+00:03:31.612 --> 00:03:34.537
+Vamos con la enumeración y el fuzzing.

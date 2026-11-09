@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:09.012
+En este vídeo ordenamos el vocabulario que todo el mundo confunde: pentesting, Red Team, bug bounty y análisis de vulnerabilidades.
+
+2
+00:00:09.012 --> 00:00:16.175
+Verás las fases de un pentest, los tipos de caja, qué es el alcance y, muy importante, el marco legal.
+
+3
+00:00:16.175 --> 00:00:21.600
+Porque en este trabajo, saber qué NO puedes tocar es tan importante como saber atacar.
+
+4
+00:00:22.566 --> 00:00:26.778
+Empecemos distinguiendo cuatro términos que mucha gente mezcla.
+
+5
+00:00:26.728 --> 00:00:33.366
+Un análisis de vulnerabilidades busca y lista fallos, normalmente con un escáner, pero no los explota.
+
+6
+00:00:33.366 --> 00:00:40.791
+Un pentesting va más allá: identifica y además explota los fallos de forma controlada, para demostrar el impacto real.
+
+7
+00:00:40.791 --> 00:00:51.191
+Un ejercicio de Red Team simula a un atacante real contra toda la organización, con sigilo y objetivos concretos, y evalúa también si el equipo defensivo detecta y responde.
+
+8
+00:00:51.191 --> 00:00:57.153
+Y un bug bounty es un programa abierto donde investigadores reportan fallos a cambio de recompensa.
+
+9
+00:00:57.153 --> 00:01:04.616
+La oferta es de Red Team, pero el día a día que describe es, sobre todo, pentesting y gestión de vulnerabilidades.
+
+10
+00:01:05.608 --> 00:01:08.833
+Un pentest sigue unas fases ordenadas.
+
+11
+00:01:08.783 --> 00:01:13.958
+Primero se define el alcance: las reglas, los permisos y los objetivos.
+
+12
+00:01:13.958 --> 00:01:18.445
+Segundo, el reconocimiento, donde recoges información.
+
+13
+00:01:18.445 --> 00:01:23.070
+Tercero, la enumeración de puertos, servicios y versiones.
+
+14
+00:01:23.070 --> 00:01:28.320
+Cuarto, la explotación, donde validas las vulnerabilidades explotándolas.
+
+15
+00:01:28.320 --> 00:01:34.383
+Quinto, la post-explotación: escalas privilegios, te mueves y mides el impacto real.
+
+16
+00:01:34.383 --> 00:01:38.345
+Y sexto, el informe, que es el producto final.
+
+17
+00:01:38.345 --> 00:01:46.883
+En la entrevista, ser capaz de recitar estas fases, cada una con una frase de ejemplo, transmite inmediatamente que tienes método.
+
+18
+00:01:46.883 --> 00:01:51.295
+Añade siempre, al principio, la autorización por escrito.
+
+19
+00:01:52.274 --> 00:01:56.086
+Las pruebas se clasifican según la información que te dan.
+
+20
+00:01:56.036 --> 00:02:01.111
+En caja negra no sabes nada del objetivo, como un atacante externo real.
+
+21
+00:02:01.111 --> 00:02:08.324
+En caja blanca te dan todo: código fuente, credenciales, diagramas, lo que da la máxima cobertura.
+
+22
+00:02:08.324 --> 00:02:16.011
+Y en caja gris te dan información parcial, por ejemplo un usuario de prueba; es el escenario más habitual en el mundo real.
+
+23
+00:02:16.011 --> 00:02:27.861
+Por encima de todo está el alcance, el scope, que define exactamente qué activos puedes tocar y cuáles no. Y las reglas de enganche fijan horarios, técnicas permitidas y a quién avisar si algo se rompe.
+
+24
+00:02:28.812 --> 00:02:32.987
+Y llegamos a lo más importante de este vídeo: la legalidad.
+
+25
+00:02:32.937 --> 00:02:39.324
+Para cualquier prueba necesitas autorización por escrito, firmada por quien pueda autorizar ese activo.
+
+26
+00:02:39.324 --> 00:02:48.987
+En España, el Código Penal castiga el acceso no autorizado y los daños a sistemas en sus artículos ciento noventa y siete bis y doscientos sesenta y cuatro.
+
+27
+00:02:48.987 --> 00:02:56.874
+Y la regla de oro: si durante el reconocimiento descubres un activo jugoso pero fuera del alcance acordado, no lo tocas.
+
+28
+00:02:56.874 --> 00:02:59.362
+Lo documentas y preguntas.
+
+29
+00:02:59.362 --> 00:03:03.587
+Salirte del scope puede ser delito aunque te hayan contratado.
+
+30
+00:03:03.587 --> 00:03:08.812
+Interioriza esto: un buen pentester es, ante todo, alguien de fiar.
+
+31
+00:03:09.790 --> 00:03:16.352
+Por último, no inventamos la rueda: existen metodologías de referencia que dan rigor a tu trabajo.
+
+32
+00:03:16.302 --> 00:03:20.265
+Para web, la biblia es la OWASP Web Security Testing Guide.
+
+33
+00:03:20.265 --> 00:03:23.590
+Para móvil, la guía MASTG, también de OWASP.
+
+34
+00:03:23.590 --> 00:03:31.115
+Para describir técnicas de ataque de forma estandarizada, el framework MITRE ATT and CK, muy usado en Red Team.
+
+35
+00:03:31.115 --> 00:03:36.477
+Y para el proceso general, el PTES o la guía del NIST ochocientos guion ciento quince.
+
+36
+00:03:36.477 --> 00:03:44.227
+En la entrevista, citar OWASP para web y MITRE ATT and CK para técnicas te hace sonar como alguien con método profesional.
+
+37
+00:03:44.227 --> 00:03:47.152
+Vamos ahora con las vulnerabilidades.

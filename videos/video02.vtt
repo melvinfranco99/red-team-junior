@@ -1,0 +1,169 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:03.537
+En este vídeo abrimos el capó de la web.
+
+2
+00:00:03.487 --> 00:00:10.675
+Casi todos los ataques que verás ocurren dentro del protocolo HTTP, así que entenderlo es media batalla ganada.
+
+3
+00:00:10.675 --> 00:00:19.637
+Vamos a ver cómo es una petición y una respuesta, los métodos, los códigos de estado, las cookies y qué añade exactamente el HTTPS.
+
+4
+00:00:19.637 --> 00:00:23.200
+Todo con ejemplos que luego reconocerás en Burp Suite.
+
+5
+00:00:24.150 --> 00:00:28.775
+La web funciona con un esquema muy simple: petición y respuesta.
+
+6
+00:00:28.725 --> 00:00:33.662
+Tu navegador, el cliente, pide algo, y el servidor responde.
+
+7
+00:00:33.662 --> 00:00:37.937
+Es como pedir en un bar: ponme un café, y te lo sirven.
+
+8
+00:00:37.937 --> 00:00:43.975
+Cada petición lleva una línea con el método y la ruta, y unas cabeceras con información extra.
+
+9
+00:00:43.975 --> 00:00:47.737
+La respuesta trae un código de estado y el contenido.
+
+10
+00:00:47.737 --> 00:00:56.762
+En Burp Suite, la herramienta que verás más adelante, pasarás horas leyendo y, sobre todo, modificando estas peticiones antes de enviarlas.
+
+11
+00:00:56.762 --> 00:01:02.275
+Entender esta conversación es, literalmente, la mitad del trabajo en pentest web.
+
+12
+00:01:03.256 --> 00:01:07.468
+Cada petición usa un método, que es el verbo de la acción.
+
+13
+00:01:07.418 --> 00:01:11.656
+GET sirve para pedir o leer datos, como consultar el menú.
+
+14
+00:01:11.656 --> 00:01:18.031
+POST envía datos, por ejemplo cuando haces login o rellenas un formulario; sería hacer un pedido.
+
+15
+00:01:18.031 --> 00:01:21.206
+PUT y PATCH crean o actualizan un recurso.
+
+16
+00:01:21.206 --> 00:01:23.268
+Y DELETE lo borra.
+
+17
+00:01:23.268 --> 00:01:30.756
+En las APIs REST estos verbos son el abecé: GET lee, POST crea, PUT y PATCH actualizan, DELETE borra.
+
+18
+00:01:30.756 --> 00:01:36.443
+Y un fallo clásico que buscarás es un DELETE accesible por alguien que no debería poder borrar.
+
+19
+00:01:37.418 --> 00:01:41.343
+La respuesta siempre empieza con un número de tres cifras.
+
+20
+00:01:41.293 --> 00:01:44.168
+El primer dígito te dice la familia.
+
+21
+00:01:44.168 --> 00:01:46.680
+Los doscientos son éxito.
+
+22
+00:01:46.680 --> 00:01:49.643
+Los trescientos son redirecciones.
+
+23
+00:01:49.643 --> 00:02:00.343
+Los cuatrocientos son errores tuyos, del cliente: el cuatrocientos uno significa que no has iniciado sesión, y el cuatrocientos tres que estás identificado pero no tienes permiso.
+
+24
+00:02:00.343 --> 00:02:04.093
+Ojo a esa diferencia, es pregunta de entrevista.
+
+25
+00:02:04.093 --> 00:02:13.605
+Los quinientos son errores del servidor, y son muy interesantes: si al meter una comilla la página devuelve un quinientos, puede que hayas tocado una vulnerabilidad.
+
+26
+00:02:13.605 --> 00:02:17.355
+En el fuzzing te guiarás por estos códigos todo el rato.
+
+27
+00:02:18.324 --> 00:02:24.924
+Hay un detalle importante: HTTP no tiene memoria, no recuerda quién eres de una petición a la siguiente.
+
+28
+00:02:24.874 --> 00:02:33.186
+Para mantenerte logueado se usa una cookie de sesión: el servidor te da una pulsera, un token, y tú la enseñas en cada petición.
+
+29
+00:02:33.186 --> 00:02:37.524
+Esa cookie se puede proteger con tres banderas que debes conocer.
+
+30
+00:02:37.524 --> 00:02:44.086
+HttpOnly impide que el JavaScript la lea, lo que frena su robo mediante un ataque XSS.
+
+31
+00:02:44.086 --> 00:02:47.811
+Secure hace que solo se envíe por HTTPS.
+
+32
+00:02:47.811 --> 00:02:53.511
+Y SameSite limita que se mande entre sitios distintos, lo que mitiga el CSRF.
+
+33
+00:02:53.511 --> 00:02:56.499
+Tres palabras que debes saber explicar.
+
+34
+00:02:57.454 --> 00:03:00.116
+Y por último, el candado.
+
+35
+00:03:00.066 --> 00:03:06.291
+HTTPS es simplemente HTTP metido dentro de un túnel cifrado llamado TLS.
+
+36
+00:03:06.291 --> 00:03:10.216
+Aporta tres cosas, como una carta certificada.
+
+37
+00:03:10.216 --> 00:03:14.566
+Confidencialidad: nadie en el camino puede leer el contenido.
+
+38
+00:03:14.566 --> 00:03:18.604
+Integridad: nadie puede alterar el mensaje sin que se note.
+
+39
+00:03:18.604 --> 00:03:23.604
+Y autenticidad: el certificado demuestra que el servidor es quien dice ser.
+
+40
+00:03:23.604 --> 00:03:33.454
+En tus auditorías reportarás problemas como certificados caducados, autofirmados o con cifrados antiguos e inseguros, usando herramientas como testssl punto sh.
+
+41
+00:03:33.454 --> 00:03:36.491
+Con esto ya entiendes la web por dentro.
+
+42
+00:03:36.491 --> 00:03:38.541
+Vamos a por Linux.

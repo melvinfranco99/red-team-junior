@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:07.650
+El reconocimiento es la fase que más rentabiliza: cuanto mejor conoces al objetivo, más fácil es todo lo demás.
+
+2
+00:00:07.600 --> 00:00:19.500
+En este vídeo verás la diferencia entre reconocimiento pasivo y activo, qué es el OSINT, cómo se enumeran subdominios y qué es la gestión de superficie de ataque, algo que la oferta pide de forma explícita.
+
+3
+00:00:20.454 --> 00:00:26.541
+Como un ladrón que vigila el edificio antes de entrar, el pentester recopila información primero.
+
+4
+00:00:26.491 --> 00:00:28.404
+Hay dos modos.
+
+5
+00:00:28.404 --> 00:00:36.591
+El reconocimiento pasivo no toca al objetivo: buscas en Google, en el DNS público, en los certificados, en LinkedIn.
+
+6
+00:00:36.591 --> 00:00:39.204
+Es prácticamente indetectable.
+
+7
+00:00:39.204 --> 00:00:46.179
+El reconocimiento activo sí interactúa con el objetivo: resuelves sus subdominios, escaneas, pruebas.
+
+8
+00:00:46.179 --> 00:00:49.041
+Eso deja rastro en sus registros.
+
+9
+00:00:49.041 --> 00:00:56.766
+La regla: lo pasivo se puede hacer con cabeza casi siempre, pero lo activo solo dentro del alcance y con autorización.
+
+10
+00:00:56.766 --> 00:01:00.379
+Esta distinción es una pregunta habitual de entrevista.
+
+11
+00:01:01.360 --> 00:01:06.622
+El OSINT es la inteligencia de fuentes abiertas, y tiene herramientas muy potentes.
+
+12
+00:01:06.572 --> 00:01:15.185
+Los Google Dorks son búsquedas avanzadas, con operadores como site o filetype, que destapan ficheros y paneles que Google ha indexado sin querer.
+
+13
+00:01:15.185 --> 00:01:20.697
+La web crt punto sh lista subdominios a partir de los certificados emitidos.
+
+14
+00:01:20.697 --> 00:01:25.847
+Shodan y Censys son buscadores de dispositivos y servicios expuestos en Internet.
+
+15
+00:01:25.847 --> 00:01:29.847
+theHarvester recopila correos, subdominios y hosts.
+
+16
+00:01:29.847 --> 00:01:34.447
+Y whois y dig te dan el titular del dominio y sus registros DNS.
+
+17
+00:01:34.447 --> 00:01:39.010
+Con un buen OSINT, a veces encuentras la puerta antes de escanear nada.
+
+18
+00:01:39.962 --> 00:01:44.437
+Una técnica central del reconocimiento es descubrir subdominios.
+
+19
+00:01:44.387 --> 00:01:54.587
+Cada subdominio, como vpn punto, dev punto, api punto o old punto, es una posible puerta nueva, y a menudo las olvidadas son las más vulnerables.
+
+20
+00:01:54.587 --> 00:02:01.012
+Las herramientas modernas: subfinder enumera subdominios de forma pasiva consultando muchas fuentes.
+
+21
+00:02:01.012 --> 00:02:04.349
+amass hace lo mismo combinando pasivo y activo.
+
+22
+00:02:04.349 --> 00:02:09.099
+Y httpx te dice cuáles de esos subdominios tienen una web viva.
+
+23
+00:02:09.099 --> 00:02:14.312
+Todo esto se alimenta de diccionarios, siendo SecLists la colección de referencia.
+
+24
+00:02:14.312 --> 00:02:19.224
+Más subdominios descubiertos significan más superficie de ataque donde buscar.
+
+25
+00:02:20.220 --> 00:02:25.295
+La oferta menciona expresamente el análisis de la superficie de ataque externa.
+
+26
+00:02:25.245 --> 00:02:38.970
+Esto se llama Attack Surface Management, y consiste en descubrir y vigilar de forma continua todo lo que una organización tiene expuesto a Internet: dominios, direcciones, servicios, certificados, recursos en la nube.
+
+27
+00:02:38.970 --> 00:02:45.282
+El objetivo es encontrar aquello que la empresa ni siquiera sabe que tiene expuesto, lo que se llama shadow IT.
+
+28
+00:02:45.282 --> 00:02:55.395
+El ciclo tiene cuatro pasos: descubrir los activos, inventariar sus servicios, evaluar su exposición y riesgo, y monitorizar los cambios de forma continua.
+
+29
+00:02:55.395 --> 00:02:57.895
+Es un área con mucho futuro.
+
+30
+00:02:58.870 --> 00:03:03.320
+Y aquí conectamos con la automatización que también pide la oferta.
+
+31
+00:03:03.270 --> 00:03:14.395
+Se pueden encadenar herramientas: subfinder descubre subdominios, httpx filtra los que tienen web, y nuclei lanza plantillas de comprobaciones conocidas contra todos ellos.
+
+32
+00:03:14.395 --> 00:03:22.245
+nuclei detecta configuraciones peligrosas, paneles expuestos y vulnerabilidades conocidas a gran escala, en segundos.
+
+33
+00:03:22.245 --> 00:03:25.807
+Es el reconocimiento moderno en una sola tubería.
+
+34
+00:03:25.807 --> 00:03:37.557
+Eso sí, insisto en la responsabilidad: automatizar genera muchísimo tráfico y queda registrado, así que estas cadenas se lanzan exclusivamente contra activos que tengas autorización para probar.
+
+35
+00:03:37.557 --> 00:03:41.195
+Vamos ahora con la reina de la enumeración: Nmap.

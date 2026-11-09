@@ -1,0 +1,181 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:03.462
+Llegamos al final: la entrevista.
+
+2
+00:00:03.412 --> 00:00:17.725
+En este vídeo verás cómo se estructura un informe y una prueba de concepto, las preguntas técnicas más frecuentes con su respuesta, el método STAR para las preguntas de actitud, las certificaciones recomendadas y un plan para tus primeros noventa días.
+
+3
+00:00:17.725 --> 00:00:21.187
+Es el momento de poner en valor todo lo aprendido.
+
+4
+00:00:22.182 --> 00:00:27.719
+La oferta repite informes técnicos y pruebas de concepto, así que empecemos por ahí.
+
+5
+00:00:27.669 --> 00:00:33.157
+El informe es lo que el cliente paga: si está mal, el mejor pentest no vale nada.
+
+6
+00:00:33.157 --> 00:00:39.319
+Su estructura típica empieza por un resumen ejecutivo, dirigido a la dirección y sin tecnicismos.
+
+7
+00:00:39.319 --> 00:00:44.219
+Sigue con el alcance y la metodología: qué se probó, cuándo y cómo.
+
+8
+00:00:44.219 --> 00:00:47.619
+Luego los hallazgos, ordenados por severidad.
+
+9
+00:00:47.619 --> 00:00:51.544
+Después la remediación, cómo arreglar cada cosa.
+
+10
+00:00:51.544 --> 00:00:54.332
+Y los anexos con las evidencias.
+
+11
+00:00:54.332 --> 00:01:02.569
+Saber comunicar a dos públicos, el técnico y el de gestión, es una habilidad muy valorada, y la oferta lo menciona expresamente.
+
+12
+00:01:03.544 --> 00:01:06.856
+Cada hallazgo del informe tiene su anatomía.
+
+13
+00:01:06.806 --> 00:01:12.169
+Un título claro, como inyección SQL en el login del panel de administración.
+
+14
+00:01:12.169 --> 00:01:17.256
+La severidad, con su CVSS y la justificación del riesgo real.
+
+15
+00:01:17.256 --> 00:01:21.794
+Una descripción de qué es y por qué importa, en lenguaje del cliente.
+
+16
+00:01:21.794 --> 00:01:27.256
+La evidencia, con una prueba de concepto reproducible, con pasos y capturas.
+
+17
+00:01:27.256 --> 00:01:29.631
+El impacto en el negocio.
+
+18
+00:01:29.631 --> 00:01:32.706
+Una remediación concreta y accionable.
+
+19
+00:01:32.706 --> 00:01:37.069
+Y las referencias a CWE, OWASP o el CVE.
+
+20
+00:01:37.069 --> 00:01:45.819
+Y recuerda la regla de oro de la prueba de concepto: debe ser reproducible y mínima, los pasos justos para confirmar el fallo sin causar daño.
+
+21
+00:01:45.819 --> 00:01:48.444
+Demuestra, no destruyas.
+
+22
+00:01:49.394 --> 00:01:53.269
+Vamos con las preguntas técnicas que caen una y otra vez.
+
+23
+00:01:53.219 --> 00:01:57.581
+Que enumeres el OWASP Top Ten, con un ejemplo de dos o tres.
+
+24
+00:01:57.581 --> 00:02:03.394
+Cómo funciona una inyección SQL y cuál es su defensa, las consultas parametrizadas.
+
+25
+00:02:03.394 --> 00:02:10.394
+La diferencia entre XSS y CSRF, y entre los códigos cuatrocientos uno y cuatrocientos tres.
+
+26
+00:02:10.394 --> 00:02:12.894
+Qué hace Nmap guion ese uve.
+
+27
+00:02:12.894 --> 00:02:19.744
+Cómo priorizas vulnerabilidades, combinando CVSS con exposición, explotabilidad y criticidad.
+
+28
+00:02:19.744 --> 00:02:21.569
+Qué es un IDOR.
+
+29
+00:02:21.569 --> 00:02:27.619
+Todas estas respuestas están en los módulos del curso, y en la chuleta de la web las tienes resumidas.
+
+30
+00:02:27.619 --> 00:02:31.269
+Repásalas en voz alta hasta que te salgan solas.
+
+31
+00:02:32.244 --> 00:02:42.156
+Para las preguntas de actitud, del tipo háblame de una vez que, usa el método STAR: describe la Situación, la Tarea, la Acción que tomaste tú y el Resultado.
+
+32
+00:02:42.156 --> 00:02:49.856
+Y para lo que no sepas, nada de fingir: di que no lo has usado aún, pero que sabes para qué sirve y cómo lo investigarías.
+
+33
+00:02:49.856 --> 00:02:52.994
+La honestidad con curiosidad siempre gana.
+
+34
+00:02:52.994 --> 00:03:06.144
+Sobre certificaciones, la ruta recomendada para júnior empieza por la eJPT y la PNPT, que son prácticas y asequibles, con vistas a la OSCP o la OSWA más adelante, y la CRTO para Red Team.
+
+35
+00:03:06.144 --> 00:03:09.119
+La oferta cita precisamente estas.
+
+36
+00:03:09.119 --> 00:03:13.169
+Menciona cuál estás preparando: demuestra compromiso.
+
+37
+00:03:14.134 --> 00:03:17.784
+Para terminar, dónde practicar y cómo arrancar.
+
+38
+00:03:17.734 --> 00:03:25.509
+Practica gratis o casi en PortSwigger Academy para web, TryHackMe para aprender guiado y HackTheBox para escenarios realistas.
+
+39
+00:03:25.509 --> 00:03:35.796
+Y para tus primeros noventa días, un plan sencillo: el primer mes, aprende los procesos, las plantillas de informe y las herramientas internas, y pregunta mucho.
+
+40
+00:03:35.796 --> 00:03:40.746
+El segundo mes, asume tareas de validación de vulnerabilidades con apoyo.
+
+41
+00:03:40.746 --> 00:03:46.496
+Y el tercero, lleva hallazgos de principio a fin y propón alguna automatización o mejora.
+
+42
+00:03:46.496 --> 00:03:53.084
+Y un consejo final: lleva dos o tres preguntas preparadas para ellos; muestra interés y proyección.
+
+43
+00:03:53.084 --> 00:03:55.671
+Has llegado al final del curso.
+
+44
+00:03:55.671 --> 00:03:58.134
+Mucha suerte en tu entrevista.
+
+45
+00:03:58.134 --> 00:04:00.246
+Vas a hacerlo genial!

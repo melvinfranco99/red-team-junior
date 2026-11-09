@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:06.137
+La mayoría de servidores corren Linux, y tu distribución de trabajo será Kali o Parrot.
+
+2
+00:00:06.087 --> 00:00:09.662
+Dominar la terminal no es opcional en este puesto.
+
+3
+00:00:09.662 --> 00:00:15.975
+En este vídeo verás lo esencial para moverte, buscar, entender permisos y encadenar comandos.
+
+4
+00:00:15.975 --> 00:00:21.400
+No necesitas memorizarlo todo: necesitas perderle el miedo a la línea de comandos.
+
+5
+00:00:22.374 --> 00:00:24.674
+Empecemos por el porqué.
+
+6
+00:00:24.624 --> 00:00:33.661
+Las distribuciones de pentesting, como Kali Linux y Parrot, traen preinstaladas cientos de herramientas ofensivas, y todas se manejan desde la terminal.
+
+7
+00:00:33.661 --> 00:00:37.224
+Por eso la línea de comandos es tu banco de trabajo.
+
+8
+00:00:37.224 --> 00:00:46.686
+Lo ideal es que montes un laboratorio seguro: Kali en una máquina virtual, junto a máquinas vulnerables como Metasploitable, en una red privada y aislada.
+
+9
+00:00:46.686 --> 00:00:55.249
+Y una advertencia que repetiré en todo el curso: practica solo en sistemas que sean tuyos o en retos autorizados como TryHackMe o HackTheBox.
+
+10
+00:00:55.249 --> 00:00:59.111
+Escanear o atacar algo ajeno sin permiso es delito.
+
+11
+00:01:00.088 --> 00:01:03.388
+Veamos los comandos básicos para moverte.
+
+12
+00:01:03.338 --> 00:01:09.800
+ele ese guion ele a lista todo lo que hay en una carpeta, incluidos los ficheros ocultos y sus permisos.
+
+13
+00:01:09.800 --> 00:01:12.363
+ce de cambia de directorio.
+
+14
+00:01:12.363 --> 00:01:15.575
+cat o less muestran el contenido de un fichero.
+
+15
+00:01:15.575 --> 00:01:19.175
+find busca ficheros por nombre en todo el sistema.
+
+16
+00:01:19.175 --> 00:01:27.900
+Y grep, que es quizá el más útil, busca un texto dentro de los ficheros; por ejemplo, buscar la palabra password en todo un directorio.
+
+17
+00:01:27.900 --> 00:01:33.750
+Con estos cinco ya te defiendes para explorar un sistema que acabas de comprometer en un laboratorio.
+
+18
+00:01:34.730 --> 00:01:40.955
+Los permisos en Linux son la clave de muchas escaladas de privilegios, así que préstales atención.
+
+19
+00:01:40.905 --> 00:01:51.317
+Cada fichero tiene tres permisos, leer, escribir y ejecutar, que se abrevian erre uve equis, y se definen para tres grupos: el dueño, el grupo y los demás.
+
+20
+00:01:51.317 --> 00:01:58.630
+En números, chmod siete cinco cinco significa todos los permisos para el dueño y lectura y ejecución para el resto.
+
+21
+00:01:58.630 --> 00:02:06.930
+Y hay un truco fundamental: algunos binarios tienen el bit SUID, lo que hace que se ejecuten con los privilegios de su dueño, a veces root.
+
+22
+00:02:06.930 --> 00:02:12.055
+Buscar esos binarios es uno de los primeros pasos de una escalada de privilegios.
+
+23
+00:02:13.020 --> 00:02:19.282
+En Linux, el administrador todopoderoso se llama root, y tiene el identificador de usuario cero.
+
+24
+00:02:19.232 --> 00:02:25.282
+Un usuario normal, cuando necesita hacer algo con privilegios, usa sudo delante del comando.
+
+25
+00:02:25.282 --> 00:02:31.495
+Para orientarte nada más entrar en un sistema, whoami te dice quién eres, e id te muestra tus grupos.
+
+26
+00:02:31.495 --> 00:02:37.970
+Pero el comando estrella para una escalada es sudo guion ele: te lista qué comandos puedes ejecutar como root.
+
+27
+00:02:37.970 --> 00:02:45.057
+Si esa lista es demasiado permisiva, probablemente tengas ahí tu camino directo para convertirte en administrador.
+
+28
+00:02:45.057 --> 00:02:49.595
+Recuérdalo: sudo guion ele es de las primeras cosas que se prueban.
+
+29
+00:02:50.590 --> 00:02:56.015
+Terminamos con un superpoder de la terminal: la tubería, esa barra vertical.
+
+30
+00:02:55.965 --> 00:03:01.177
+Pasa la salida de un comando como entrada del siguiente, como una cadena de montaje.
+
+31
+00:03:01.177 --> 00:03:10.590
+Por ejemplo, puedes leer un registro, filtrar las líneas con la palabra admin, ordenarlas y contar las repetidas, todo en una sola línea encadenada.
+
+32
+00:03:10.590 --> 00:03:19.177
+Los filtros que más usarás son grep para buscar, cut y awk para columnas, sort para ordenar y wc guion ele para contar líneas.
+
+33
+00:03:19.177 --> 00:03:25.865
+Y para la red, recuerda curl para ver cabeceras, wget para descargar y netcat para abrir conexiones.
+
+34
+00:03:25.865 --> 00:03:28.677
+Con esto ya tienes base de Linux.
+
+35
+00:03:28.677 --> 00:03:30.677
+Vamos con Windows.

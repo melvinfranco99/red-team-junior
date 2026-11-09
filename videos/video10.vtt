@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:10.725
+El fuzzing es el arte de probar miles de valores automáticamente para descubrir lo que no está enlazado: directorios ocultos, ficheros de copia, parámetros y subdominios.
+
+2
+00:00:10.725 --> 00:00:20.687
+En este vídeo verás cómo se usan ffuf y gobuster, y, sobre todo, cómo leer los resultados, que es lo que separa a quien sabe de quien solo lanza la herramienta.
+
+3
+00:00:21.654 --> 00:00:23.941
+Empecemos por la idea.
+
+4
+00:00:23.891 --> 00:00:38.829
+El fuzzing consiste en probar automáticamente muchísimos valores para descubrir recursos que no están enlazados en ninguna parte: directorios ocultos como admin o backup, ficheros sensibles como un punto env o una copia de seguridad, parámetros y subdominios.
+
+5
+00:00:38.829 --> 00:00:44.566
+Es como coger un llavero enorme e ir probando todas las llaves en una cerradura hasta que una abre.
+
+6
+00:00:44.566 --> 00:00:53.054
+El combustible de todo esto son los diccionarios, también llamados wordlists, siendo la colección SecLists la referencia que usa todo el mundo.
+
+7
+00:00:54.016 --> 00:00:56.778
+La herramienta más popular es ffuf.
+
+8
+00:00:56.728 --> 00:01:06.016
+Su truco es la palabra clave FUZZ en mayúsculas: la pones en el punto de la petición que quieres probar, y ffuf la va sustituyendo por cada entrada del diccionario.
+
+9
+00:01:06.016 --> 00:01:13.478
+Por ejemplo, apuntas a la URL del sitio seguido de FUZZ, y le pasas una lista de nombres de directorios comunes.
+
+10
+00:01:13.478 --> 00:01:18.416
+Con la opción guion eme ce le dices qué códigos de estado quieres que te muestre.
+
+11
+00:01:18.416 --> 00:01:25.228
+Es rapidísimo y muy flexible, y sirve igual para directorios, para parámetros ocultos o para subdominios.
+
+12
+00:01:26.210 --> 00:01:30.510
+Y aquí está la clave del fuzzing: leer los códigos de estado.
+
+13
+00:01:30.460 --> 00:01:35.572
+Un doscientos significa que el recurso existe y es accesible, así que míralo.
+
+14
+00:01:35.572 --> 00:01:42.135
+Un trescientos uno o trescientos dos es una redirección, que a menudo apunta a una carpeta real o a un login.
+
+15
+00:01:42.135 --> 00:01:50.310
+Un cuatrocientos tres es muy interesante: el recurso existe pero el acceso está prohibido, lo que invita a intentar un bypass.
+
+16
+00:01:50.310 --> 00:01:55.197
+Y un cuatrocientos cuatro significa que no existe, así que se descarta.
+
+17
+00:01:55.197 --> 00:01:59.447
+Interpretar bien esta tabla es lo que distingue a un buen analista.
+
+18
+00:02:00.444 --> 00:02:06.944
+Hay un problema habitual: algunas webs devuelven un doscientos para todo, con páginas de error suaves.
+
+19
+00:02:06.894 --> 00:02:10.494
+Si no filtras, te ahogas en falsos positivos.
+
+20
+00:02:10.494 --> 00:02:18.581
+La solución es filtrar por el tamaño de la respuesta o por el número de palabras, con las opciones guion efe ese y guion efe doble uve.
+
+21
+00:02:18.581 --> 00:02:24.081
+Dominar el filtrado es, otra vez, lo que separa al júnior del que de verdad sabe.
+
+22
+00:02:24.081 --> 00:02:33.856
+Además, elige el diccionario según el contexto, la tecnología y el idioma, y controla el ritmo de las peticiones para no tumbar el servicio que estás auditando.
+
+23
+00:02:34.822 --> 00:02:42.472
+Otra herramienta clásica es gobuster, con modos para directorios, para subdominios por DNS y para hosts virtuales.
+
+24
+00:02:42.472 --> 00:02:47.422
+Y terminamos con las buenas prácticas, que importan tanto como la técnica.
+
+25
+00:02:47.422 --> 00:02:53.272
+Verifica siempre manualmente lo que encuentres: el fuzzing te da pistas, no conclusiones.
+
+26
+00:02:53.272 --> 00:02:55.872
+Guarda la salida para el informe.
+
+27
+00:02:55.872 --> 00:03:03.672
+Y recuerda que el fuzzing genera muchísimo tráfico y queda registrado en los logs, así que se hace solo dentro del alcance acordado.
+
+28
+00:03:03.672 --> 00:03:07.447
+Practica en la web con el laboratorio de lectura de fuzzing.
+
+29
+00:03:07.447 --> 00:03:11.759
+Con esto cerramos el reconocimiento y entramos en la explotación web.

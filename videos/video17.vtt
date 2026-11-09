@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:04.862
+La oferta valora el scripting y la inteligencia artificial aplicada.
+
+2
+00:00:04.812 --> 00:00:15.237
+En este vídeo verás por qué y cuándo automatizar, lo esencial de Bash y Python para un pentester, y cómo usar la IA para acelerar tu trabajo sin comprometer los datos del cliente.
+
+3
+00:00:15.237 --> 00:00:19.425
+Dos valores diferenciales que puedes mencionar en la entrevista.
+
+4
+00:00:20.382 --> 00:00:22.682
+Empecemos por el porqué.
+
+5
+00:00:22.632 --> 00:00:32.107
+El pentesting tiene muchísimo trabajo repetitivo: lanzar el mismo escaneo contra cincuenta equipos, probar cien endpoints, procesar salidas enormes.
+
+6
+00:00:32.107 --> 00:00:38.419
+El scripting consiste, simplemente, en convertir todo eso en un único comando que lo hace por ti.
+
+7
+00:00:38.419 --> 00:00:41.282
+Te ahorra tiempo y reduce errores.
+
+8
+00:00:41.282 --> 00:00:49.282
+La oferta valora explícitamente que sepas Python y Bash, así que aunque empieces por lo básico, es un área donde conviene invertir.
+
+9
+00:00:49.282 --> 00:00:55.106
+No necesitas ser programador experto: necesitas poder automatizar tus propias tareas.
+
+10
+00:00:56.056 --> 00:01:00.631
+Bash es el pegamento del pentester, el lenguaje de la propia terminal.
+
+11
+00:01:00.581 --> 00:01:09.831
+Con unas pocas piezas ya haces maravillas: variables, bucles for y while, condicionales con if, y las tuberías y redirecciones que ya vimos.
+
+12
+00:01:09.831 --> 00:01:18.856
+Por ejemplo, con un simple bucle for puedes recorrer una lista de direcciones y lanzar Nmap contra cada una, guardando el resultado en un fichero por host.
+
+13
+00:01:18.856 --> 00:01:26.431
+Bash es ideal para encadenar herramientas rápidamente y para esas tareas de una sola línea que repetirías mil veces a mano.
+
+14
+00:01:26.431 --> 00:01:29.131
+Es lo primero que conviene soltar.
+
+15
+00:01:30.122 --> 00:01:36.922
+Cuando la tarea tiene lógica más compleja, parseas datos o hablas con APIs, das el salto a Python.
+
+16
+00:01:36.872 --> 00:01:42.509
+La librería estrella es requests, que te permite hacer peticiones web con muy poco código.
+
+17
+00:01:42.509 --> 00:01:53.009
+Por ejemplo, en unas pocas líneas puedes escribir un bucle que pida los pedidos del mil al mil diez en una API y te diga cuáles son accesibles, detectando así un posible IDOR.
+
+18
+00:01:53.009 --> 00:02:03.647
+Otras librerías útiles son argparse para los parámetros, re para expresiones regulares, BeautifulSoup para procesar HTML, y pwntools para explotación y CTF.
+
+19
+00:02:03.647 --> 00:02:07.222
+Python es tu herramienta cuando Bash se queda corto.
+
+20
+00:02:08.172 --> 00:02:14.347
+La oferta valora el uso de la inteligencia artificial, así que veamos usos reales y legítimos.
+
+21
+00:02:14.297 --> 00:02:19.297
+La IA te ayuda a entender rápido una tecnología o un error que no conocías.
+
+22
+00:02:19.297 --> 00:02:23.997
+Puede proponerte variantes de un payload o wordlists adaptadas al contexto.
+
+23
+00:02:23.997 --> 00:02:29.559
+Es excelente para parsear y resumir salidas enormes, quedándote con lo relevante.
+
+24
+00:02:29.559 --> 00:02:35.209
+Y acelera la redacción de informes, generando borradores de hallazgos y recomendaciones.
+
+25
+00:02:35.209 --> 00:02:38.697
+También te ayuda a escribir y depurar tus scripts.
+
+26
+00:02:38.697 --> 00:02:43.722
+Bien usada, la IA es como tener un compañero junior incansable a tu lado.
+
+27
+00:02:44.710 --> 00:02:49.985
+Pero hay que usarla con cabeza, y esto es importante decirlo en una entrevista.
+
+28
+00:02:49.935 --> 00:03:00.222
+Primera regla: nunca subas datos del cliente, credenciales ni información del engagement a servicios de IA públicos, porque sería una fuga de confidencialidad grave.
+
+29
+00:03:00.222 --> 00:03:08.922
+Segunda: la IA alucina, es decir, se inventa comandos, rutas o incluso CVEs que no existen, con total seguridad.
+
+30
+00:03:08.922 --> 00:03:13.085
+Por eso debes verificar siempre lo que te genera antes de usarlo.
+
+31
+00:03:13.085 --> 00:03:18.635
+La IA acelera tu trabajo, pero la responsabilidad y el criterio son siempre tuyos.
+
+32
+00:03:18.635 --> 00:03:22.435
+Mencionar estos riesgos demuestra madurez profesional.
+
+33
+00:03:22.435 --> 00:03:24.960
+Vamos con la seguridad móvil.

@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:06.225
+Este es, probablemente, el vídeo más importante del curso para tu entrevista.
+
+2
+00:00:06.175 --> 00:00:10.662
+El OWASP Top Ten es la pregunta estrella en cualquier puesto de seguridad web.
+
+3
+00:00:10.662 --> 00:00:18.062
+Vamos a ver las diez categorías de la versión de dos mil veintiuno, cada una con un ejemplo sencillo y su defensa principal.
+
+4
+00:00:18.062 --> 00:00:21.562
+Si dominas esto, ya partes con ventaja.
+
+5
+00:00:22.542 --> 00:00:24.754
+Primero, qué es.
+
+6
+00:00:24.704 --> 00:00:30.542
+OWASP es una comunidad mundial, sin ánimo de lucro, dedicada a la seguridad del software.
+
+7
+00:00:30.542 --> 00:00:37.079
+Su Top Ten es la lista de las diez categorías de riesgo web más críticas, y se revisa cada pocos años.
+
+8
+00:00:37.079 --> 00:00:42.442
+Es la pregunta estrella en cualquier entrevista de seguridad web, así que tienes que dominarla.
+
+9
+00:00:42.442 --> 00:00:47.917
+Un matiz importante: son categorías de riesgo, no vulnerabilidades concretas.
+
+10
+00:00:47.917 --> 00:00:51.229
+La versión vigente es la de dos mil veintiuno.
+
+11
+00:00:51.229 --> 00:00:55.267
+Vamos a recorrerlas, empezando por la más importante.
+
+12
+00:00:56.248 --> 00:00:58.435
+Las tres primeras.
+
+13
+00:00:58.385 --> 00:01:10.823
+La A cero uno, pérdida de control de acceso, es el número uno: un usuario accede a algo que no le corresponde, como cambiar en la URL el identificador quince por el dieciséis y ver la factura de otro cliente.
+
+14
+00:01:10.823 --> 00:01:17.073
+La A cero dos son los fallos criptográficos: datos sensibles sin cifrar o con algoritmos débiles.
+
+15
+00:01:17.073 --> 00:01:24.835
+La A cero tres es la inyección, que incluye la inyección SQL y, desde dos mil veintiuno, también el XSS.
+
+16
+00:01:24.835 --> 00:01:33.448
+Las defensas: verificar permisos siempre en el servidor, usar cifrado fuerte y, contra la inyección, consultas parametrizadas.
+
+17
+00:01:34.418 --> 00:01:36.555
+Las siguientes tres.
+
+18
+00:01:36.505 --> 00:01:44.443
+La A cero cuatro es el diseño inseguro: el fallo está en el diseño, no en un bug de código; faltan controles desde el principio.
+
+19
+00:01:44.443 --> 00:01:55.905
+La A cero cinco es la configuración de seguridad incorrecta, muy común: paneles con credenciales admin admin por defecto, directorios abiertos, mensajes de error con demasiados detalles.
+
+20
+00:01:55.905 --> 00:02:04.255
+Y la A cero seis son los componentes vulnerables y desactualizados: usar librerías o gestores de contenido con vulnerabilidades conocidas.
+
+21
+00:02:04.255 --> 00:02:10.330
+Se defienden con modelado de amenazas, bastionado y un buen inventario de dependencias que parchear.
+
+22
+00:02:11.292 --> 00:02:13.492
+Y las cuatro últimas.
+
+23
+00:02:13.442 --> 00:02:22.529
+La A cero siete son los fallos de identificación y autenticación: contraseñas débiles, ausencia de doble factor, sesiones mal gestionadas.
+
+24
+00:02:22.529 --> 00:02:29.929
+La A cero ocho, fallos de integridad del software y los datos, como actualizaciones o deserializaciones sin verificar.
+
+25
+00:02:29.929 --> 00:02:37.579
+La A cero nueve, fallos de registro y monitorización: si no hay logs ni alertas, los ataques pasan desapercibidos.
+
+26
+00:02:37.579 --> 00:02:46.929
+Y la A diez es el SSRF, donde consigues que el propio servidor haga peticiones a donde tú le digas, por ejemplo a la metadata interna de la nube.
+
+27
+00:02:46.929 --> 00:02:50.417
+Memoriza el orden: es una pregunta clásica.
+
+28
+00:02:51.406 --> 00:02:55.318
+Para terminar, cómo se prueba todo esto en la práctica.
+
+29
+00:02:55.268 --> 00:03:03.281
+Casi todo el Top Ten se audita con Burp Suite, interceptando y modificando peticiones, algo que verás en el nivel de explotación web.
+
+30
+00:03:03.281 --> 00:03:14.768
+Y si quieres practicar de verdad, el mejor recurso gratuito del mundo es la PortSwigger Web Security Academy: tiene cientos de laboratorios organizados por categoría, cada uno con su solución.
+
+31
+00:03:14.768 --> 00:03:19.556
+Probablemente sea la mejor inversión de tiempo para preparar esta entrevista.
+
+32
+00:03:19.556 --> 00:03:23.306
+Dedícale horas y llegarás con una confianza enorme.
+
+33
+00:03:23.306 --> 00:03:26.306
+Nos vemos en el nivel de reconocimiento.

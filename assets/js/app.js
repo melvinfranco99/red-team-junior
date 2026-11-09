@@ -1,7 +1,10 @@
 /* Red Team Junior — aplicación principal (SPA sin dependencias) */
 (function () {
   const { $, $$, esc, store, shuffle } = window.LAB_UTILS;
-  const M = window.MODULOS, LABS = window.LABS, NIVELES = window.NIVELES;
+  const M = window.MODULOS, LABS = window.LABS, NIVELES = window.NIVELES, V = window.VIDEOS || [];
+  const vid = (id) => V.find((v) => v.id === id);
+  const mins = (s) => `${Math.round(s / 60)} min`;
+  const fmtT = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
   const app = $("#app");
   const P = () => store.get("progreso", { done: {}, quiz: {}, examen: 0 });
   const saveP = (p) => { store.set("progreso", p); renderNavProgress(); };
@@ -34,6 +37,23 @@
       <div class="meta"><span>📖 ${m.min} min</span><span>🧩 ${m.secciones.length} secciones</span>${m.lab ? "<span>🧪 lab</span>" : ""}${q != null ? `<span>📝 ${q}/${m.quiz.length}</span>` : ""}</div></a>`;
   };
 
+  const videoPlayer = (v, auto) => !v ? `<div class="video-ph">🎬 Vídeo en preparación</div>` : `
+    <div class="player"><video controls preload="metadata" poster="videos/video${v.id}.jpg" data-id="${v.id}" ${auto ? "autoplay" : ""}>
+      <source src="videos/video${v.id}.mp4" type="video/mp4"><track kind="subtitles" srclang="es" label="Español" src="videos/video${v.id}.vtt" default></video>
+    <div class="chapters"><h4>Capítulos · ${mins(v.duracion)}</h4><ol>${v.capitulos.map((c) => `<li><button data-t="${c.t}"><span>${fmtT(c.t)}</span> ${esc(c.titulo)}</button></li>`).join("")}</ol></div></div>
+    <details class="transcript"><summary>📄 Transcripción completa del vídeo</summary>${v.guion.map((g) => `<h5>${esc(g.titulo)}</h5><p>${esc(g.texto)}</p>`).join("")}</details>`;
+
+  function bindPlayer(root) {
+    $$(".player", root).forEach((pl) => {
+      const video = $("video", pl);
+      pl.addEventListener("click", (e) => { const b = e.target.closest("[data-t]"); if (b) { video.currentTime = +b.dataset.t; video.play(); } });
+      video.addEventListener("timeupdate", () => {
+        const t = video.currentTime; const bs = $$("[data-t]", pl); let act = 0;
+        bs.forEach((b, i) => { if (+b.dataset.t <= t + 0.5) act = i; }); bs.forEach((b, i) => b.classList.toggle("on", i === act));
+      });
+    });
+  }
+
   function quizHTML(qs, id) {
     return `<form class="quiz" data-q="${id}">${qs.map((q, i) => `<fieldset><legend>${i + 1}. ${esc(q.q)}</legend>${q.op.map((o, k) => `<label><input type="radio" name="q${i}" value="${k}"> ${esc(o)}</label>`).join("")}<p class="exp hidden"></p></fieldset>`).join("")}
       <div class="btns"><button class="btn primary">Corregir</button></div><p class="qres"></p></form>`;
@@ -63,7 +83,7 @@
       <h1>Prepara la entrevista de <span class="grad">Técnico Junior Red Team</span></h1>
       <p class="lead">Todo lo que piden en la oferta de Telefónica Tech, explicado desde cero y de la forma más sencilla posible: OWASP, Nmap, Burp Suite, enumeración, fuzzing, APIs, Windows/Linux, informes y PoC. Con analogías, diagramas, chuletas de comandos, laboratorios, tests y examen final.</p>
       <div class="btns"><a class="btn primary lg" href="#/modulo/${next.id}">${n ? "Continuar" : "Empezar"}: Módulo ${next.id} →</a><a class="btn lg" href="#/ruta">Ver la ruta completa</a></div>
-      <div class="kpis"><div><b>${M.length}</b><span>módulos</span></div><div><b>${Object.keys(LABS).length}</b><span>laboratorios</span></div><div><b>${M.reduce((a, m) => a + m.quiz.length, 0)}</b><span>preguntas</span></div><div><b>${window.GLOSARIO.length}</b><span>términos</span></div></div>
+      <div class="kpis"><div><b>${M.length}</b><span>módulos</span></div><div><b>${V.length}</b><span>vídeos${V.length ? ` · ${Math.round(V.reduce((a, v) => a + v.duracion, 0) / 60)} min` : ""}</span></div><div><b>${Object.keys(LABS).length}</b><span>laboratorios</span></div><div><b>${M.reduce((a, m) => a + m.quiz.length, 0)}</b><span>preguntas</span></div></div>
     </div>
     <div class="hero-art" aria-hidden="true">${heroSVG()}</div></section>
 
@@ -73,7 +93,7 @@
 
     <section><h2 class="sec">Cómo funciona</h2><div class="grid4 how">
       <div class="card"><b>1 · Lee</b><p>Lecciones cortas y visuales, con analogías y ejemplos reales de auditoría.</p></div>
-      <div class="card"><b>2 · Visualiza</b><p>Diagramas, tablas, terminales de ejemplo y chuletas de comandos.</p></div>
+      <div class="card"><b>2 · Mira</b><p>Un vídeo narrado por módulo con capítulos, subtítulos y transcripción.</p></div>
       <div class="card"><b>3 · Practica</b><p>Laboratorios interactivos: Nmap, OWASP, CVSS, SQLi/XSS, HTTP, STAR…</p></div>
       <div class="card"><b>4 · Demuestra</b><p>Test por módulo, examen final y simulador de entrevista técnica.</p></div></div></section>
 
@@ -89,13 +109,14 @@
 
   views.modulo = (id) => {
     const m = M.find((x) => x.id === +id); if (!m) return views.notfound();
-    const p = P(); const prev = M.find((x) => x.id === m.id - 1), next = M.find((x) => x.id === m.id + 1);
+    const p = P(); const v = vid(m.video); const prev = M.find((x) => x.id === m.id - 1), next = M.find((x) => x.id === m.id + 1);
     app.innerHTML = `<nav class="crumbs"><a href="#/ruta">Ruta</a> › <span class="pill ${nivelClass(m.nivel)}">${m.nivel}</span> › Módulo ${m.id}</nav>
     <header class="mod-h ${nivelClass(m.nivel)}"><span class="num">Módulo ${String(m.id).padStart(2, "0")}</span><h1>${esc(m.titulo)}</h1><p class="lead">${esc(m.resumen)}</p>
       <div class="meta"><span>📖 ${m.min} min de lectura</span><span>🧩 ${m.secciones.length} secciones</span>${m.lab ? `<span>🧪 ${esc(LABS[m.lab].titulo)}</span>` : ""}</div></header>
-    <div class="mod-layout"><aside class="toc"><h4>En este módulo</h4><ol><li><a href="#s-obj">Objetivos</a></li>${m.secciones.map((s, i) => `<li><a href="#s-${i}">${esc(s.h.replace(/^\d+\.\s*/, ""))}</a></li>`).join("")}${m.lab ? '<li><a href="#s-lab">Laboratorio</a></li>' : ""}<li><a href="#s-quiz">Test</a></li></ol></aside>
+    <div class="mod-layout"><aside class="toc"><h4>En este módulo</h4><ol><li><a href="#s-obj">Objetivos</a></li>${v ? '<li><a href="#s-video">Vídeo</a></li>' : ""}${m.secciones.map((s, i) => `<li><a href="#s-${i}">${esc(s.h.replace(/^\d+\.\s*/, ""))}</a></li>`).join("")}${m.lab ? '<li><a href="#s-lab">Laboratorio</a></li>' : ""}<li><a href="#s-quiz">Test</a></li></ol></aside>
     <article class="lesson">
       <section id="s-obj" class="card objectives"><h3>🎯 Al terminar sabrás…</h3><ul class="check">${m.objetivos.map((o) => `<li>${esc(o)}</li>`).join("")}</ul></section>
+      ${v ? `<section id="s-video"><h2>🎬 Vídeo explicativo</h2>${videoPlayer(v)}</section>` : ""}
       ${m.secciones.map((s, i) => `<section id="s-${i}" class="lsec"><h2>${esc(s.h)}</h2>${s.html}</section>`).join("")}
       <section class="card keys"><h3>🔑 Ideas clave</h3><div class="chips">${m.claves.map((c) => `<span>${esc(c)}</span>`).join("")}</div></section>
       ${m.entrevista ? `<section class="card objectives"><h3>🎤 En la entrevista te pueden preguntar…</h3><ul class="check">${m.entrevista.map((o) => `<li>${esc(o)}</li>`).join("")}</ul></section>` : ""}
@@ -104,11 +125,29 @@
       <section class="card done-box"><label class="chk big"><input type="checkbox" id="done" ${p.done[m.id] ? "checked" : ""}> Marcar módulo como completado</label></section>
       <nav class="pager">${prev ? `<a class="btn" href="#/modulo/${prev.id}">← ${esc(prev.titulo)}</a>` : "<span></span>"}${next ? `<a class="btn primary" href="#/modulo/${next.id}">${esc(next.titulo)} →</a>` : `<a class="btn primary" href="#/examen">Examen final →</a>`}</nav>
     </article></div>`;
+    bindPlayer(app);
     if (m.lab) LABS[m.lab].render($("#labhere"));
     $("#quizhere").innerHTML = quizHTML(m.quiz, m.id);
     bindQuiz($("#quizhere form"), m.quiz, (ok) => { const p = P(); p.quiz[m.id] = Math.max(ok, p.quiz[m.id] || 0); if (ok >= Math.ceil(m.quiz.length * 0.6)) p.done[m.id] = 1; saveP(p); $("#done").checked = !!p.done[m.id]; });
     $("#done").onchange = (e) => { const p = P(); if (e.target.checked) p.done[m.id] = 1; else delete p.done[m.id]; saveP(p); };
     $$(".toc a").forEach((a) => a.onclick = (e) => { e.preventDefault(); document.getElementById(a.getAttribute("href").slice(1)).scrollIntoView({ behavior: "smooth" }); });
+  };
+
+  views.videos = () => {
+    const total = V.reduce((a, v) => a + v.duracion, 0);
+    app.innerHTML = `<div class="page-h"><h1>Vídeos del curso</h1><p class="lead">${V.length} vídeos narrados · ${Math.round(total / 60)} minutos en total · con capítulos, subtítulos y transcripción.</p></div>
+    ${NIVELES.map((nv) => { const vs = V.filter((v) => v.nivel === nv.id); return vs.length ? `<section class="lvl ${nv.color}"><div class="lvl-h"><h2>${nv.id}</h2></div><div class="vgrid">${vs.map((v) => `
+      <a class="vcard" href="#/video/${v.id}"><div class="thumb"><img src="videos/video${v.id}.jpg" alt="" loading="lazy"><span class="dur">${fmtT(v.duracion)}</span><span class="play">▶</span></div>
+      <div class="vinfo"><small>Vídeo ${v.id} · Módulo ${v.modulo}</small><h3>${esc(v.titulo)}</h3><p>${esc(v.subtitulo)}</p></div></a>`).join("")}</div></section>` : ""; }).join("")}`;
+  };
+
+  views.video = (id) => {
+    const v = vid(id); if (!v) return views.notfound(); const m = M.find((x) => x.video === id);
+    const i = V.indexOf(v), prev = V[i - 1], next = V[i + 1];
+    app.innerHTML = `<nav class="crumbs"><a href="#/videos">Vídeos</a> › <span class="pill ${nivelClass(v.nivel)}">${v.nivel}</span> › Vídeo ${v.id}</nav>
+      <div class="page-h"><h1>${esc(v.titulo)}</h1><p class="lead">${esc(v.subtitulo)}</p></div>${videoPlayer(v, true)}
+      <nav class="pager">${prev ? `<a class="btn" href="#/video/${prev.id}">← ${esc(prev.titulo)}</a>` : "<span></span>"}${m ? `<a class="btn ghost" href="#/modulo/${m.id}">📖 Ir al módulo</a>` : ""}${next ? `<a class="btn primary" href="#/video/${next.id}">${esc(next.titulo)} →</a>` : "<span></span>"}</nav>`;
+    bindPlayer(app);
   };
 
   views.labs = () => {
@@ -188,7 +227,7 @@
     const h = location.hash.replace(/^#\/?/, "").split("/");
     document.body.classList.remove("nav-open");
     $$(".nav a").forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#/" + h[0] || (h[0] === "" && a.getAttribute("href") === "#/")));
-    const map = { "": "home", ruta: "ruta", modulo: "modulo", labs: "labs", lab: "lab", chuleta: "chuleta", glosario: "glosario", examen: "examen" };
+    const map = { "": "home", ruta: "ruta", modulo: "modulo", videos: "videos", video: "video", labs: "labs", lab: "lab", chuleta: "chuleta", glosario: "glosario", examen: "examen" };
     (views[map[h[0]]] || views.notfound)(h[1]);
     window.scrollTo(0, 0);
     const t = $("h1", app); document.title = (h[0] ? (t ? t.textContent + " · " : "") : "") + "Red Team Junior";

@@ -11,7 +11,7 @@ window.NIVELES = [
 window.MODULOS = [
 /* ═══════════════════ FUNDAMENTOS ═══════════════════ */
 {
-  id: 1, nivel: "Fundamentos", lab: "http", min: 22,
+  id: 1, video: "01", nivel: "Fundamentos", lab: "http", min: 22,
   titulo: "Redes y TCP/IP desde cero",
   resumen: "IP, puertos, el modelo OSI/TCP-IP, el saludo de tres pasos y DNS: cómo viaja la información que vas a auditar.",
   objetivos: ["Explicar qué es una IP, un puerto y un protocolo con analogías", "Entender el saludo TCP (SYN, SYN/ACK, ACK)", "Diferenciar TCP de UDP y conocer los puertos más habituales", "Saber qué hace el DNS y por qué importa en reconocimiento"],
@@ -75,7 +75,7 @@ window.MODULOS = [
   ]
 },
 {
-  id: 2, nivel: "Fundamentos", lab: "http", min: 24,
+  id: 2, video: "02", nivel: "Fundamentos", lab: "http", min: 24,
   titulo: "La web por dentro: HTTP y HTTPS",
   resumen: "Petición y respuesta, métodos, códigos de estado, cabeceras, cookies y sesiones: el lenguaje donde ocurren casi todos los ataques web.",
   objetivos: ["Leer una petición y una respuesta HTTP", "Conocer los métodos y los códigos de estado principales", "Entender cookies, sesiones y cabeceras de seguridad", "Saber qué aporta HTTPS/TLS"],
@@ -147,7 +147,7 @@ window.MODULOS = [
   ]
 },
 {
-  id: 3, nivel: "Fundamentos", lab: null, min: 20,
+  id: 3, video: "03", nivel: "Fundamentos", lab: null, min: 20,
   titulo: "Linux esencial para pentesting",
   resumen: "Navegación, permisos, usuarios, procesos y tuberías en la línea de comandos: tu herramienta de trabajo diaria (Kali, Parrot).",
   objetivos: ["Moverte por el sistema de ficheros y buscar cosas", "Entender permisos y usuarios (root, sudo)", "Encadenar comandos con tuberías y filtros", "Conocer ficheros clave para un pentester"],
@@ -201,7 +201,7 @@ window.MODULOS = [
   ]
 },
 {
-  id: 4, nivel: "Fundamentos", lab: null, min: 20,
+  id: 4, video: "04", nivel: "Fundamentos", lab: null, min: 20,
   titulo: "Windows y Active Directory esencial",
   resumen: "Cómo funciona Windows en empresa, el Directorio Activo, usuarios, hashes NTLM y PowerShell: el entorno corporativo que auditarás.",
   objetivos: ["Entender qué es Active Directory y por qué es el objetivo nº1 interno", "Conocer SMB, RDP y los puertos Windows", "Saber qué son los hashes NTLM y Kerberos a alto nivel", "Soltar los primeros comandos de PowerShell y CMD"],
@@ -256,7 +256,7 @@ window.MODULOS = [
 },
 /* ═══════════════════ METODOLOGÍA ═══════════════════ */
 {
-  id: 5, nivel: "Metodología", lab: null, min: 22,
+  id: 5, video: "05", nivel: "Metodología", lab: null, min: 22,
   titulo: "Qué es un pentest y un Red Team",
   resumen: "Tipos de prueba, las fases de un pentesting, el alcance (scope), las reglas de enganche y el marco legal que no puedes saltarte.",
   objetivos: ["Diferenciar pentest, Red Team, bug bounty y análisis de vulnerabilidades", "Memorizar las fases de un pentest", "Entender scope, reglas de enganche y autorización", "Conocer metodologías de referencia (PTES, OWASP, OSSTMM)"],
@@ -309,7 +309,7 @@ window.MODULOS = [
   ]
 },
 {
-  id: 6, nivel: "Metodología", lab: "cvss", min: 22,
+  id: 6, video: "06", nivel: "Metodología", lab: "cvss", min: 22,
   titulo: "Vulnerabilidades: CVE, CVSS, CWE y priorización",
   resumen: "Cómo se identifican, puntúan y priorizan las vulnerabilidades. El lenguaje con el que escribirás informes y hablarás con el cliente.",
   objetivos: ["Distinguir CVE, CWE, CVSS y EPSS", "Interpretar un vector y una puntuación CVSS", "Priorizar hallazgos por riesgo real, no solo por nota", "Usar fuentes como NVD, Exploit-DB y CISA KEV"],
@@ -369,7 +369,7 @@ window.MODULOS = [
   ]
 },
 {
-  id: 7, nivel: "Metodología", lab: "owasp", min: 26,
+  id: 7, video: "07", nivel: "Metodología", lab: "owasp", min: 26,
   titulo: "OWASP Top 10 explicado desde cero",
   resumen: "Las 10 categorías de riesgo web más importantes (2021), cada una con analogía, ejemplo y defensa. El contenido estrella de tu entrevista.",
   objetivos: ["Nombrar y explicar las 10 categorías del OWASP Top 10 2021", "Dar un ejemplo real de cada una", "Proponer la defensa principal de cada riesgo", "Relacionar cada fallo con lo que verás en Burp"],
@@ -408,7 +408,7 @@ window.MODULOS = [
 },
 /* ═══════════════════ RECONOCIMIENTO ═══════════════════ */
 {
-  id: 8, nivel: "Reconocimiento", lab: null, min: 22,
+  id: 8, video: "08", nivel: "Reconocimiento", lab: null, min: 22,
   titulo: "Reconocimiento, OSINT y superficie de ataque",
   resumen: "Recoger información antes de atacar: pasivo vs activo, OSINT, descubrimiento de subdominios y gestión de la superficie de ataque externa (ASM).",
   objetivos: ["Diferenciar reconocimiento pasivo y activo", "Enumerar subdominios y activos expuestos", "Usar OSINT (Google dorks, certificados, DNS)", "Entender el Attack Surface Management que pide la oferta"],
@@ -458,7 +458,7 @@ window.MODULOS = [
   ]
 },
 {
-  id: 9, nivel: "Reconocimiento", lab: "nmap", min: 26,
+  id: 9, video: "09", nivel: "Reconocimiento", lab: "nmap", min: 26,
   titulo: "Escaneo de puertos con Nmap",
   resumen: "La herramienta estrella de la oferta. Tipos de escaneo, detección de servicios y versiones, scripts NSE e interpretación de resultados.",
   objetivos: ["Lanzar los escaneos de Nmap más útiles", "Interpretar estados de puerto y versiones", "Usar scripts NSE para detectar vulnerabilidades", "Diseccionar un comando Nmap pieza a pieza"],
@@ -519,7 +519,7 @@ nmap --script vuln 10.10.10.5      # busca vulnerabilidades conocidas</div>
   ]
 },
 {
-  id: 10, nivel: "Reconocimiento", lab: "fuzz", min: 22,
+  id: 10, video: "10", nivel: "Reconocimiento", lab: "fuzz", min: 22,
   titulo: "Enumeración y fuzzing web",
   resumen: "Descubrir directorios, ficheros, parámetros y subdominios ocultos con diccionarios. ffuf, gobuster, feroxbuster y el arte de leer códigos de estado.",
   objetivos: ["Entender qué es el fuzzing y para qué sirve", "Manejar ffuf y gobuster con diccionarios", "Fuzzear directorios, vhosts y parámetros", "Interpretar respuestas y filtrar ruido"],
@@ -571,7 +571,7 @@ ffuf -w subdominios.txt -u https://sitio.com -H "Host: FUZZ.sitio.com" -fs 1234<
 },
 /* ═══════════════════ EXPLOTACIÓN WEB ═══════════════════ */
 {
-  id: 11, nivel: "Explotación web", lab: null, min: 24,
+  id: 11, video: "11", nivel: "Explotación web", lab: null, min: 24,
   titulo: "Burp Suite a fondo",
   resumen: "La herramienta citada en la oferta. Proxy, Repeater, Intruder, Decoder y Scanner: cómo interceptar, modificar y reenviar peticiones para encontrar fallos.",
   objetivos: ["Configurar Burp como proxy y capturar tráfico", "Usar Repeater, Intruder, Decoder y Comparer", "Entender el flujo de trabajo del pentest web con Burp", "Conocer las diferencias Community vs Professional"],
@@ -628,7 +628,7 @@ ffuf -w subdominios.txt -u https://sitio.com -H "Host: FUZZ.sitio.com" -fs 1234<
   ]
 },
 {
-  id: 12, nivel: "Explotación web", lab: "inyeccion", min: 26,
+  id: 12, video: "12", nivel: "Explotación web", lab: "inyeccion", min: 26,
   titulo: "Inyección: SQLi e inyección de comandos",
   resumen: "El clásico A03 de OWASP. Cómo se mezcla la entrada del usuario con una consulta o un comando, cómo se detecta y cómo se defiende.",
   objetivos: ["Entender por qué ocurre una inyección", "Reconocer SQLi (in-band, ciega, basada en errores)", "Detectar inyección de comandos del SO", "Explicar la defensa: consultas parametrizadas"],
@@ -675,7 +675,7 @@ ffuf -w subdominios.txt -u https://sitio.com -H "Host: FUZZ.sitio.com" -fs 1234<
   ]
 },
 {
-  id: 13, nivel: "Explotación web", lab: "inyeccion", min: 24,
+  id: 13, video: "13", nivel: "Explotación web", lab: "inyeccion", min: 24,
   titulo: "XSS, CSRF y SSRF",
   resumen: "Tres fallos web imprescindibles: ejecutar scripts en el navegador de la víctima (XSS), abusar de su sesión (CSRF) y hacer que el servidor pida por ti (SSRF).",
   objetivos: ["Distinguir XSS reflejado, almacenado y DOM", "Explicar el impacto real de un XSS", "Entender CSRF y su defensa (tokens, SameSite)", "Reconocer un SSRF y por qué es grave en la nube"],
@@ -717,7 +717,7 @@ http://169.254.169.254/latest/meta-data/iam/security-credentials/</div>
   ]
 },
 {
-  id: 14, nivel: "Explotación web", lab: null, min: 24,
+  id: 14, video: "14", nivel: "Explotación web", lab: null, min: 24,
   titulo: "Control de acceso, autenticación, JWT y APIs",
   resumen: "IDOR y escalada de privilegios, fallos de autenticación, tokens JWT y la seguridad de las APIs REST: el corazón del A01 y A07 de OWASP.",
   objetivos: ["Detectar IDOR y escaladas horizontal/vertical", "Reconocer fallos de autenticación y de sesión", "Entender la estructura de un JWT y sus fallos", "Aplicar el OWASP API Security Top 10"],
@@ -779,7 +779,7 @@ GET /api/pedidos/1002   →  ¡el pedido de OTRO cliente!</div>
 },
 /* ═══════════════════ INFRA Y AVANZADO ═══════════════════ */
 {
-  id: 15, nivel: "Infra y avanzado", lab: null, min: 22,
+  id: 15, video: "15", nivel: "Infra y avanzado", lab: null, min: 22,
   titulo: "Contraseñas, hashes y fuerza bruta",
   resumen: "Qué es un hash, cómo se rompen las contraseñas (Hashcat, John, Hydra), diccionarios, salting y por qué el MFA lo cambia todo.",
   objetivos: ["Entender hashing, salting y por qué no se guardan contraseñas en claro", "Diferenciar ataque online y offline", "Usar Hydra, Hashcat y John a nivel conceptual", "Reconocer tipos de hash comunes"],
@@ -821,7 +821,7 @@ john --wordlist=rockyou.txt hashes.txt</div>` },
   ]
 },
 {
-  id: 16, nivel: "Infra y avanzado", lab: null, min: 20,
+  id: 16, video: "16", nivel: "Infra y avanzado", lab: null, min: 20,
   titulo: "Explotación, post-explotación y escalada",
   resumen: "De la vulnerabilidad al acceso: shells, Metasploit, escalada de privilegios, movimiento lateral y persistencia. Conceptos que un júnior debe conocer.",
   objetivos: ["Entender qué es un exploit, un payload y una shell", "Diferenciar bind shell y reverse shell", "Conocer la escalada de privilegios en Linux y Windows", "Situar movimiento lateral, persistencia y C2"],
@@ -868,7 +868,7 @@ john --wordlist=rockyou.txt hashes.txt</div>` },
   ]
 },
 {
-  id: 17, nivel: "Infra y avanzado", lab: null, min: 22,
+  id: 17, video: "17", nivel: "Infra y avanzado", lab: null, min: 22,
   titulo: "Scripting (Python/Bash) e IA en el pentesting",
   resumen: "Automatizar tareas repetitivas con Bash y Python, y usar la IA para acelerar enumeración, análisis y redacción. Dos valores diferenciales de la oferta.",
   objetivos: ["Escribir bucles y automatizaciones simples en Bash", "Usar Python con requests para tocar APIs", "Saber cuándo automatizar y cuándo no", "Aplicar IA de forma útil y segura al pentesting"],
@@ -909,7 +909,7 @@ for i in range(1000, 1010):
   ]
 },
 {
-  id: 18, nivel: "Infra y avanzado", lab: null, min: 20,
+  id: 18, video: "18", nivel: "Infra y avanzado", lab: null, min: 20,
   titulo: "Seguridad de aplicaciones móviles",
   resumen: "Lo valorado en la oferta: cómo se auditan apps Android e iOS, el OWASP Mobile Top 10 y las herramientas básicas (MobSF, Frida, apktool).",
   objetivos: ["Conocer la estructura de una app Android (APK) e iOS (IPA)", "Enumerar el OWASP Mobile Top 10 a alto nivel", "Diferenciar análisis estático y dinámico", "Nombrar las herramientas móviles clave"],
@@ -956,7 +956,7 @@ for i in range(1000, 1010):
 },
 /* ═══════════════════ ENTREVISTA ═══════════════════ */
 {
-  id: 19, nivel: "Entrevista", lab: "entrevista", min: 26,
+  id: 19, video: "19", nivel: "Entrevista", lab: "entrevista", min: 26,
   titulo: "Informe, PoC y la entrevista técnica",
   resumen: "Cómo se escribe un informe y una prueba de concepto, las preguntas más frecuentes con respuestas modelo, las certificaciones y tus primeros 90 días.",
   objetivos: ["Estructurar un informe técnico y una PoC", "Responder las preguntas clásicas con método (STAR)", "Elegir una ruta de certificaciones", "Planificar tus primeros 90 días en el puesto"],

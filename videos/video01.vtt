@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:03.462
+Bienvenido al primer vídeo del curso.
+
+2
+00:00:03.412 --> 00:00:08.287
+Antes de atacar nada, hay que entender cómo viaja la información por una red.
+
+3
+00:00:08.287 --> 00:00:19.337
+En este vídeo verás, con analogías muy sencillas, qué es una dirección IP, qué es un puerto, cómo se saludan dos equipos con el protocolo TCP y para qué sirve el DNS.
+
+4
+00:00:19.337 --> 00:00:23.787
+Son los cimientos: si los dominas, todo lo demás encaja.
+
+5
+00:00:23.787 --> 00:00:25.987
+Vamos paso a paso.
+
+6
+00:00:26.958 --> 00:00:31.908
+Imagina que cada ordenador o servidor de Internet es un edificio de oficinas.
+
+7
+00:00:31.858 --> 00:00:36.508
+La dirección IP es la calle y el número: identifica al edificio.
+
+8
+00:00:36.508 --> 00:00:42.445
+Un puerto es cada puerta numerada del edificio, y hay sesenta y cinco mil quinientas treinta y seis.
+
+9
+00:00:42.445 --> 00:00:46.358
+Detrás de cada puerta abierta hay un servicio escuchando.
+
+10
+00:00:46.358 --> 00:00:54.258
+Y el protocolo es el idioma que se habla en esa puerta: en el ochenta se habla HTTP, en el veintidós se habla SSH.
+
+11
+00:00:54.258 --> 00:01:01.708
+Lo primero que hace un pentester es dibujar el plano del edificio: qué puertas están abiertas y qué idioma se habla en cada una.
+
+12
+00:01:01.708 --> 00:01:05.220
+Eso es, exactamente, escanear.
+
+13
+00:01:06.208 --> 00:01:09.145
+Las direcciones tienen dos sabores.
+
+14
+00:01:09.095 --> 00:01:18.920
+Las privadas, como las que empiezan por ciento noventa y dos punto ciento sesenta y ocho, se usan dentro de casas y empresas y no navegan por Internet directamente.
+
+15
+00:01:18.920 --> 00:01:25.483
+Las públicas sí son visibles desde Internet, y son precisamente la superficie de ataque externa que auditarás.
+
+16
+00:01:25.483 --> 00:01:32.708
+Una dirección especial es la ciento veintisiete punto cero punto cero punto uno, que siempre apunta a tu propio equipo.
+
+17
+00:01:32.708 --> 00:01:39.208
+Y fíjate en la notación con barra, como barra veinticuatro: indica cuántas direcciones abarca una red.
+
+18
+00:01:39.208 --> 00:01:43.245
+Barra veinticuatro son doscientas cincuenta y seis direcciones.
+
+19
+00:01:43.245 --> 00:01:45.845
+Lo verás constantemente en Nmap.
+
+20
+00:01:46.802 --> 00:01:50.939
+Para hablar, dos equipos usan sobre todo dos protocolos.
+
+21
+00:01:50.889 --> 00:01:56.202
+TCP es como una llamada de teléfono: primero saludas y confirmas que te oyen.
+
+22
+00:01:56.202 --> 00:02:08.127
+El saludo tiene tres pasos: el cliente envía un paquete SYN que significa quiero conectar; el servidor responde SYN ACK, de acuerdo; y el cliente confirma con ACK.
+
+23
+00:02:08.127 --> 00:02:10.102
+Ya hay conexión.
+
+24
+00:02:10.102 --> 00:02:16.714
+UDP, en cambio, es como gritar un mensaje por la ventana: rápido, pero sin confirmación.
+
+25
+00:02:16.714 --> 00:02:26.177
+Esto importa para el escaneo: el escaneo SYN de Nmap envía solo el primer paquete y, si recibe respuesta, corta sin terminar el saludo.
+
+26
+00:02:26.177 --> 00:02:29.764
+Por eso se llama medio abierto y es más sigiloso.
+
+27
+00:02:30.732 --> 00:02:36.757
+Hay un puñado de puertos que debes reconocer al instante, porque aparecerán en todos tus escaneos.
+
+28
+00:02:36.707 --> 00:02:41.544
+El veintidós es SSH, el acceso remoto seguro en Linux.
+
+29
+00:02:41.544 --> 00:02:46.619
+El ochenta es la web sin cifrar y el cuatrocientos cuarenta y tres la web cifrada.
+
+30
+00:02:46.619 --> 00:02:54.682
+El cuatrocientos cuarenta y cinco es SMB, la compartición de ficheros de Windows, muy interesante en auditorías internas.
+
+31
+00:02:54.682 --> 00:02:59.669
+El tres mil trescientos ochenta y nueve es el escritorio remoto, RDP.
+
+32
+00:02:59.669 --> 00:03:02.744
+Y el cincuenta y tres es el DNS.
+
+33
+00:03:02.744 --> 00:03:07.732
+Memoriza estos cinco y tendrás ya una intuición rapidísima al leer un escaneo.
+
+34
+00:03:08.710 --> 00:03:11.485
+Por último, el DNS.
+
+35
+00:03:11.435 --> 00:03:22.985
+Es la agenda de contactos de Internet: convierte un nombre fácil de recordar, como telefónica punto com, en la dirección IP real del servidor, igual que tu móvil convierte Mamá en su número.
+
+36
+00:03:22.985 --> 00:03:33.660
+En reconocimiento mirarás varios tipos de registro: el A da la dirección, el MX los servidores de correo, el TXT guarda verificaciones que a veces filtran información útil.
+
+37
+00:03:33.660 --> 00:03:41.110
+Y algo clave: cada subdominio, como vpn punto, dev punto o api punto, es una posible puerta nueva.
+
+38
+00:03:41.110 --> 00:03:47.060
+Enumerar subdominios amplía la superficie de ataque, y lo veremos en el nivel de reconocimiento.
+
+39
+00:03:47.060 --> 00:03:49.647
+Nos vemos en el siguiente vídeo.

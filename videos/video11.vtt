@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.850
+Burp Suite es la herramienta más usada en pentest web, y la oferta la cita por su nombre.
+
+2
+00:00:05.800 --> 00:00:16.362
+En este vídeo verás qué es, cómo se configura, para qué sirve cada una de sus pestañas y, sobre todo, el flujo de trabajo con el que encontrarás vulnerabilidades reales.
+
+3
+00:00:16.362 --> 00:00:20.325
+Es tu herramienta de cabecera: vamos a conocerla bien.
+
+4
+00:00:21.318 --> 00:00:23.855
+Empecemos por lo esencial.
+
+5
+00:00:23.805 --> 00:00:34.693
+Burp Suite es un proxy de interceptación: se coloca justo entre tu navegador y el servidor, de modo que puedes ver y, lo más importante, modificar cada petición antes de que se envíe.
+
+6
+00:00:34.693 --> 00:00:38.905
+Esto te da un control total sobre la conversación HTTP.
+
+7
+00:00:38.905 --> 00:00:49.455
+Donde el navegador solo te deja usar la web como un usuario normal, Burp te deja manipularla a tu antojo: cambiar parámetros, cabeceras, cookies, lo que quieras.
+
+8
+00:00:49.455 --> 00:00:56.693
+Por eso es, con diferencia, la herramienta más usada en pentest web y una de las que te preguntarán en la entrevista.
+
+9
+00:00:57.688 --> 00:01:00.088
+Configurarlo es sencillo.
+
+10
+00:01:00.038 --> 00:01:04.963
+Burp escucha por defecto en tu propia máquina, en el puerto ocho mil ochenta.
+
+11
+00:01:04.963 --> 00:01:12.275
+Configuras el navegador, o usas el navegador que Burp trae integrado, para que todo el tráfico pase por ese proxy.
+
+12
+00:01:12.275 --> 00:01:22.350
+Un paso que mucha gente olvida: para poder ver el tráfico HTTPS sin errores de certificado, tienes que instalar el certificado de autoridad de Burp en tu navegador.
+
+13
+00:01:22.350 --> 00:01:31.050
+Una vez hecho esto, en la pestaña Proxy puedes interceptar peticiones una a una, y en el historial ves absolutamente todo lo que ha pasado por Burp.
+
+14
+00:01:32.018 --> 00:01:36.555
+Burp tiene varias pestañas, pero estas son las que de verdad usarás.
+
+15
+00:01:36.505 --> 00:01:40.293
+Proxy, para interceptar y revisar el historial.
+
+16
+00:01:40.293 --> 00:01:47.493
+Repeater, probablemente la que más usarás, para coger una petición y reenviarla una y otra vez cambiándola a mano.
+
+17
+00:01:47.493 --> 00:01:52.818
+Intruder, para automatizar ataques como el fuzzing de parámetros o la fuerza bruta.
+
+18
+00:01:52.818 --> 00:01:59.355
+Decoder, para codificar y decodificar datos en Base64, URL o hexadecimal.
+
+19
+00:01:59.355 --> 00:02:04.443
+Y Comparer, para comparar dos respuestas y detectar diferencias sutiles.
+
+20
+00:02:04.443 --> 00:02:08.893
+Con Proxy y Repeater ya puedes hacer el ochenta por ciento del trabajo.
+
+21
+00:02:09.876 --> 00:02:12.238
+Veamos el flujo real.
+
+22
+00:02:12.188 --> 00:02:18.313
+Primero mapeas la aplicación navegándola con Burp activo, para que registre todas sus peticiones.
+
+23
+00:02:18.313 --> 00:02:23.363
+Luego observas: qué parámetros hay, qué cookies, qué llamadas a APIs.
+
+24
+00:02:23.363 --> 00:02:32.313
+Después manipulas: coges una petición interesante, la mandas al Repeater, cambias un valor y la reenvías para ver cómo reacciona el servidor.
+
+25
+00:02:32.313 --> 00:02:36.213
+Y cuando algo promete, lo automatizas con Intruder.
+
+26
+00:02:36.213 --> 00:02:47.876
+Por ejemplo, capturas una petición que pide la factura con identificador quince, la mandas a Repeater, la cambias a dieciséis, y si ves la factura de otro cliente, acabas de encontrar un IDOR.
+
+27
+00:02:48.838 --> 00:02:51.575
+Por último, las versiones.
+
+28
+00:02:51.525 --> 00:02:57.163
+La Community es gratuita y te sirve para aprender, aunque el Intruder va limitado en velocidad.
+
+29
+00:02:57.163 --> 00:03:02.738
+La Professional, de pago, añade el escáner automático y quita esos límites.
+
+30
+00:03:02.738 --> 00:03:12.825
+Burp admite extensiones muy útiles, como Autorize, que prueba automáticamente los fallos de control de acceso, o JWT Editor, para manipular tokens.
+
+31
+00:03:12.825 --> 00:03:21.125
+Y si quieres una alternativa totalmente gratuita y muy completa, ahí tienes OWASP ZAP, que es otro proxy de interceptación.
+
+32
+00:03:21.125 --> 00:03:26.575
+Con Burp dominado, vamos a usarlo para atacar: empezamos con las inyecciones.

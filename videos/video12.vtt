@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.625
+La inyección es el clásico de los clásicos, la categoría A cero tres de OWASP.
+
+2
+00:00:05.575 --> 00:00:14.575
+En este vídeo entenderás por qué ocurre, verás la inyección SQL con sus variantes, la inyección de comandos del sistema, y cómo se defienden.
+
+3
+00:00:14.575 --> 00:00:20.850
+Lo importante no es memorizar payloads, sino entender la idea, que es lo que valoran en la entrevista.
+
+4
+00:00:21.846 --> 00:00:32.071
+Toda inyección, sea del tipo que sea, nace de lo mismo: la aplicación mezcla los datos que escribe el usuario con el código que va a ejecutar, sin separarlos.
+
+5
+00:00:32.071 --> 00:00:39.808
+El intérprete, ya sea la base de datos o el sistema operativo, no puede distinguir qué es un dato y qué es una instrucción.
+
+6
+00:00:39.808 --> 00:00:48.521
+La analogía es esta: estás dictando una carta a una secretaria y, en mitad del texto, dices y ahora ignora lo anterior y envíame el saldo.
+
+7
+00:00:48.521 --> 00:00:52.558
+Si ella lo obedece ciegamente, eso es una inyección.
+
+8
+00:00:52.558 --> 00:00:58.708
+De esta misma raíz salen la inyección SQL, el XSS y la inyección de comandos.
+
+9
+00:00:59.680 --> 00:01:02.417
+Veamos la inyección SQL.
+
+10
+00:01:02.367 --> 00:01:07.830
+La aplicación construye una consulta a la base de datos pegando directamente tu entrada.
+
+11
+00:01:07.830 --> 00:01:18.530
+Si en el campo de usuario escribes comilla OR uno igual uno con dos guiones, la consulta se transforma en una condición que siempre es verdadera, y el login cae: entras sin contraseña.
+
+12
+00:01:18.530 --> 00:01:22.855
+Con técnicas similares se pueden extraer datos enteros de la base.
+
+13
+00:01:22.855 --> 00:01:34.116
+Existe una herramienta, sqlmap, que automatiza toda la detección y explotación, pero en la entrevista valoran que entiendas cómo funciona por dentro, no solo que sepas lanzar la herramienta.
+
+14
+00:01:35.066 --> 00:01:40.378
+La inyección SQL tiene varias modalidades según cómo recuperas la información.
+
+15
+00:01:40.328 --> 00:01:45.228
+En la de tipo UNION, los datos vuelven directamente en la respuesta de la página.
+
+16
+00:01:45.228 --> 00:01:50.266
+En la basada en errores, es el propio mensaje de error el que filtra los datos.
+
+17
+00:01:50.266 --> 00:01:54.028
+Pero a veces no ves nada, y ahí entran las ciegas.
+
+18
+00:01:54.028 --> 00:02:02.541
+En la ciega booleana, la página cambia ligeramente según si tu condición es verdadera o falsa, y vas deduciendo los datos letra a letra.
+
+19
+00:02:02.541 --> 00:02:10.341
+Y en la ciega por tiempo, inyectas un comando que duerme cinco segundos: si la respuesta tarda, la condición era cierta.
+
+20
+00:02:10.341 --> 00:02:12.641
+Ingenioso, ¿verdad?
+
+21
+00:02:13.620 --> 00:02:18.232
+La otra inyección importante es la de comandos del sistema operativo.
+
+22
+00:02:18.182 --> 00:02:23.145
+Ocurre cuando la aplicación coge tu entrada y la mete en un comando del sistema.
+
+23
+00:02:23.145 --> 00:02:27.657
+Imagina un formulario web que hace ping a la dirección que tú escribas.
+
+24
+00:02:27.657 --> 00:02:35.470
+Si el campo no está protegido, puedes escribir la dirección, un punto y coma, y a continuación otro comando como whoami.
+
+25
+00:02:35.470 --> 00:02:39.645
+El sistema ejecutará el ping y, además, tu comando.
+
+26
+00:02:39.645 --> 00:02:49.357
+Los operadores clave para encadenar son el punto y coma, la doble y comercial, la doble barra vertical, la barra simple y el signo de dólar con paréntesis.
+
+27
+00:02:49.357 --> 00:02:53.182
+Así se pasa de un simple ping a ejecutar lo que quieras.
+
+28
+00:02:54.166 --> 00:02:58.003
+Terminamos con lo que más te preguntarán: la defensa.
+
+29
+00:02:57.953 --> 00:03:10.516
+Contra la inyección SQL, la solución número uno son las consultas parametrizadas, también llamadas prepared statements, que separan el código de los datos para que la entrada del usuario nunca se interprete como instrucción.
+
+30
+00:03:10.516 --> 00:03:20.841
+Se complementa con la validación de entradas mediante listas de permitidos y con el mínimo privilegio: el usuario de la base de datos no debe ser administrador, para limitar el daño.
+
+31
+00:03:20.841 --> 00:03:24.278
+Contra los comandos, evitar llamar al shell.
+
+32
+00:03:24.278 --> 00:03:31.116
+Un cortafuegos de aplicación, un WAF, ayuda, pero nunca sustituye a arreglar el código.
+
+33
+00:03:31.116 --> 00:03:35.903
+Vamos con XSS, CSRF y SSRF.

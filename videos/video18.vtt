@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:04.837
+La oferta valora el análisis de seguridad de aplicaciones móviles.
+
+2
+00:00:04.787 --> 00:00:15.937
+En este vídeo verás, a alto nivel, cómo se auditan apps de Android e iOS, el OWASP Mobile Top Ten, la diferencia entre análisis estático y dinámico, y las herramientas clave.
+
+3
+00:00:15.937 --> 00:00:21.200
+No necesitas ser experto para entrar, pero sí demostrar que conoces el terreno.
+
+4
+00:00:22.182 --> 00:00:25.344
+Dos mundos, parecidos en el fondo.
+
+5
+00:00:25.294 --> 00:00:35.707
+En Android, las apps vienen empaquetadas en ficheros APK, están escritas en Java o Kotlin, y se pueden decompilar con herramientas como apktool o jadx para leer su código.
+
+6
+00:00:35.707 --> 00:00:45.982
+En iOS, el paquete es un IPA, el lenguaje es Swift u Objective-C, y el ecosistema es más cerrado, por lo que a menudo se necesita un dispositivo con jailbreak.
+
+7
+00:00:45.982 --> 00:00:51.844
+En ambos, los datos se guardan en almacenes locales que conviene revisar en busca de secretos.
+
+8
+00:00:51.844 --> 00:00:55.357
+Conocer estas diferencias básicas ya te sitúa.
+
+9
+00:00:56.344 --> 00:01:00.169
+Igual que en web, hay un OWASP específico para móvil.
+
+10
+00:01:00.119 --> 00:01:07.981
+Los riesgos más habituales: el almacenamiento inseguro, cuando la app guarda secretos o credenciales en claro en el dispositivo.
+
+11
+00:01:07.981 --> 00:01:12.819
+La comunicación insegura, sin cifrado o sin fijación de certificado.
+
+12
+00:01:12.819 --> 00:01:16.094
+La autenticación y la criptografía débiles.
+
+13
+00:01:16.094 --> 00:01:21.431
+Y la facilidad para hacer ingeniería inversa cuando la app no está protegida ni ofuscada.
+
+14
+00:01:21.431 --> 00:01:28.269
+La referencia formal son los estándares MASVS, que define los requisitos, y MASTG, que es la guía de pruebas.
+
+15
+00:01:28.269 --> 00:01:31.781
+Cítalos y sonarás con conocimiento de causa.
+
+16
+00:01:32.738 --> 00:01:35.338
+Hay dos enfoques de análisis.
+
+17
+00:01:35.288 --> 00:01:44.188
+El estático consiste en decompilar la app y revisar su código sin ejecutarla, buscando claves, URLs, permisos y secretos.
+
+18
+00:01:44.188 --> 00:01:52.038
+El dinámico se hace con la app en marcha: interceptas su tráfico, manipulas en tiempo real, saltas comprobaciones.
+
+19
+00:01:52.038 --> 00:02:01.025
+Y una idea que debes tener muy clara: gran parte de las vulnerabilidades reales no están en la app en sí, sino en la API del backend que la app consume.
+
+20
+00:02:01.025 --> 00:02:09.113
+Por eso se dice que una app móvil es, en el fondo, un cliente más una API, y ahí aplicas todo lo que viste en el módulo de APIs.
+
+21
+00:02:10.068 --> 00:02:13.493
+Las herramientas que debes conocer por su nombre.
+
+22
+00:02:13.443 --> 00:02:24.405
+MobSF, Mobile Security Framework, es la más completa para empezar: hace análisis estático y dinámico de forma automatizada, y es ideal para un primer vistazo a un APK.
+
+23
+00:02:24.405 --> 00:02:28.843
+apktool y jadx sirven para desempaquetar la app y leer su código.
+
+24
+00:02:28.843 --> 00:02:35.718
+Frida permite instrumentación dinámica, es decir, modificar funciones de la app en caliente mientras se ejecuta.
+
+25
+00:02:35.718 --> 00:02:43.805
+Y objection es una capa que simplifica Frida, permitiendo, por ejemplo, saltar comprobaciones sin escribir scripts.
+
+26
+00:02:43.805 --> 00:02:48.980
+Con haber pasado un APK por MobSF, ya tienes una anécdota que contar.
+
+27
+00:02:49.942 --> 00:02:54.179
+Terminamos con un reto muy habitual: el SSL pinning.
+
+28
+00:02:54.129 --> 00:03:01.417
+Muchas apps solo confían en su propio certificado, de modo que, de primeras, Burp no puede interceptar su tráfico.
+
+29
+00:03:01.417 --> 00:03:07.304
+Esto se salta en laboratorio usando Frida u objection, para poder auditar la comunicación.
+
+30
+00:03:07.304 --> 00:03:17.604
+No necesitas ser un experto en móvil para entrar en el puesto, pero sí entender que una app es cliente más API, saber que existen el MASVS y el MASTG, y conocer estas herramientas.
+
+31
+00:03:17.604 --> 00:03:21.392
+Con eso demuestras el interés real que busca la oferta.
+
+32
+00:03:21.392 --> 00:03:24.704
+Analiza siempre apps propias o de laboratorio.
+
+33
+00:03:24.704 --> 00:03:27.804
+Vamos al último nivel: la entrevista.

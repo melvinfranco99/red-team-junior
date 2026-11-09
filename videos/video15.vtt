@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.350
+En este vídeo entenderás cómo se guardan las contraseñas y cómo se rompen.
+
+2
+00:00:05.300 --> 00:00:12.512
+Verás qué es un hash y una sal, la diferencia entre ataques online y offline, y las herramientas Hydra, Hashcat y John.
+
+3
+00:00:12.512 --> 00:00:17.462
+Y, al final, por qué el doble factor cambia por completo esta partida.
+
+4
+00:00:18.438 --> 00:00:20.725
+Empecemos por el hash.
+
+5
+00:00:20.675 --> 00:00:26.563
+Un hash convierte cualquier texto en una huella de longitud fija, y lo hace de forma irreversible.
+
+6
+00:00:26.563 --> 00:00:33.925
+La analogía perfecta es una picadora de carne: del filete sacas carne picada, pero no puedes recomponer el filete.
+
+7
+00:00:33.925 --> 00:00:41.725
+Cuando haces login, el sistema no compara tu contraseña en claro: hashea lo que escribes y lo compara con el hash que tiene guardado.
+
+8
+00:00:41.725 --> 00:00:44.250
+Si coinciden, entras.
+
+9
+00:00:44.250 --> 00:00:53.350
+Un detalle importante: algoritmos como MD5 o SHA uno son demasiado rápidos, y por eso no sirven para guardar contraseñas de forma segura.
+
+10
+00:00:54.304 --> 00:00:58.254
+Para proteger bien las contraseñas se usan dos trucos.
+
+11
+00:00:58.204 --> 00:01:04.016
+El primero es la sal: un valor aleatorio y único que se añade a cada contraseña antes de hashear.
+
+12
+00:01:04.016 --> 00:01:12.754
+Esto impide usar tablas precalculadas, las llamadas rainbow tables, y hace que dos usuarios con la misma contraseña tengan hashes distintos.
+
+13
+00:01:12.754 --> 00:01:21.016
+El segundo truco es usar algoritmos deliberadamente lentos, como bcrypt, scrypt o Argon dos.
+
+14
+00:01:21.016 --> 00:01:26.654
+Al ser lentos, probar millones de contraseñas se vuelve carísimo en tiempo para el atacante.
+
+15
+00:01:26.654 --> 00:01:32.729
+Esa lentitud, que sería un defecto en otros contextos, aquí es justo la virtud que buscamos.
+
+16
+00:01:33.722 --> 00:01:37.047
+Hay dos escenarios de ataque a contraseñas.
+
+17
+00:01:36.997 --> 00:01:48.734
+El ataque online se hace contra un servicio vivo, como un login o un SSH, probando contraseñas una a una; la herramienta típica es Hydra, y es lento porque hay bloqueos y queda registrado.
+
+18
+00:01:48.734 --> 00:02:00.022
+El ataque offline se hace sobre hashes que ya has robado; aquí usas Hashcat o John the Ripper, que aprovechan la tarjeta gráfica para probar millones de candidatos por segundo, sin bloqueos ni logs.
+
+19
+00:02:00.022 --> 00:02:06.922
+Por eso, cuando una empresa sufre una filtración de hashes, la carrera es contrarreloj antes de que los crackeen.
+
+20
+00:02:07.908 --> 00:02:11.445
+El combustible del cracking son los diccionarios.
+
+21
+00:02:11.395 --> 00:02:17.195
+El más famoso es rockyou punto txt, con millones de contraseñas reales filtradas.
+
+22
+00:02:17.195 --> 00:02:27.258
+Además, se aplican reglas que mutan cada palabra imitando lo que hacen los humanos, convirtiendo por ejemplo password en pe arroba ese ese uve cero erre con admiración.
+
+23
+00:02:27.258 --> 00:02:42.608
+También conviene reconocer los hashes de un vistazo: treinta y dos caracteres hexadecimales suele ser MD5; si empieza por dólar dos be, es bcrypt; y los hashes con dos partes separadas por dos puntos suelen ser NTLM de Windows.
+
+24
+00:02:42.608 --> 00:02:46.195
+Herramientas como hashid te ayudan a identificarlos.
+
+25
+00:02:47.182 --> 00:02:49.694
+Terminamos con la defensa.
+
+26
+00:02:49.644 --> 00:03:00.019
+En tus informes recomendarás hashing fuerte con sal, usando bcrypt o Argon dos, políticas de longitud razonables y bloqueo tras varios intentos fallidos.
+
+27
+00:03:00.019 --> 00:03:08.157
+Pero la medida reina es el doble factor, el MFA: aunque un atacante robe la contraseña, sin el segundo factor no entra.
+
+28
+00:03:08.157 --> 00:03:12.807
+Por eso el MFA neutraliza la mayoría de los robos de credenciales.
+
+29
+00:03:12.807 --> 00:03:21.594
+Y recuerda la ética: el cracking se practica solo sobre hashes que tengas autorización para probar, como los de un CTF o un laboratorio.
+
+30
+00:03:21.594 --> 00:03:25.082
+Vamos con la explotación y la post-explotación.

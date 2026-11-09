@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:09.037
+Tres siglas que suenan parecido y que no debes confundir nunca en una entrevista: XSS, CSRF y SSRF.
+
+2
+00:00:09.037 --> 00:00:16.437
+En este vídeo verás qué hace cada una, con ejemplos claros, cómo se defienden y, sobre todo, cómo distinguirlas.
+
+3
+00:00:16.437 --> 00:00:19.587
+Dominar estas diferencias te hará destacar.
+
+4
+00:00:20.574 --> 00:00:24.524
+Empecemos por el XSS, Cross-Site Scripting.
+
+5
+00:00:24.474 --> 00:00:33.261
+Ocurre cuando una web refleja lo que tú escribes sin limpiarlo, y así consigues que tu código JavaScript se ejecute en el navegador de otra persona.
+
+6
+00:00:33.261 --> 00:00:40.949
+Por ejemplo, si un campo de comentarios muestra tal cual lo que escribes, puedes meter una etiqueta script que lea las cookies.
+
+7
+00:00:40.949 --> 00:00:47.686
+El impacto es serio: robar la cookie de sesión de la víctima, hacer acciones en su nombre, redirigirla.
+
+8
+00:00:47.686 --> 00:00:53.961
+Es tan importante que, desde dos mil veintiuno, OWASP lo integró dentro de la categoría de inyección.
+
+9
+00:00:54.952 --> 00:00:57.714
+Hay tres tipos de XSS.
+
+10
+00:00:57.664 --> 00:01:06.864
+El reflejado viaja en la URL o en la petición, y la respuesta lo devuelve; requiere engañar a la víctima para que haga clic en un enlace preparado.
+
+11
+00:01:06.864 --> 00:01:17.564
+El almacenado es el más peligroso: el payload se guarda en el servidor, por ejemplo en un comentario o en un perfil, y afecta a todo el que lo vea, sin necesidad de engañar a nadie.
+
+12
+00:01:17.564 --> 00:01:23.452
+Y el de tipo DOM ocurre enteramente en el JavaScript del navegador, sin pasar por el servidor.
+
+13
+00:01:23.452 --> 00:01:31.264
+Se defiende escapando la salida según el contexto, con una buena política de seguridad de contenido y con cookies HttpOnly.
+
+14
+00:01:32.234 --> 00:01:36.571
+Vamos con el CSRF, Cross-Site Request Forgery.
+
+15
+00:01:36.521 --> 00:01:46.696
+Aquí una web maliciosa consigue que tu navegador, que ya está logueado en otro sitio, envíe una petición que tú no querías: cambiar tu correo, hacer una transferencia.
+
+16
+00:01:46.696 --> 00:01:52.821
+El truco es que aprovecha que la cookie de sesión se envía automáticamente en cada petición a ese sitio.
+
+17
+00:01:52.821 --> 00:01:58.809
+Por ejemplo, una imagen oculta cuyo origen apunta a una URL de transferencia de tu banco.
+
+18
+00:01:58.809 --> 00:02:09.009
+La defensa es un token anti-CSRF, un valor impredecible en cada formulario, y las cookies con la marca SameSite, que limita su envío entre sitios distintos.
+
+19
+00:02:09.972 --> 00:02:16.397
+Esta diapositiva es clave para la entrevista: la diferencia entre XSS y CSRF.
+
+20
+00:02:16.347 --> 00:02:26.659
+El XSS ejecuta tu script en el navegador de la víctima, aprovechando que la web no sanea la salida, y se defiende con codificación y política de seguridad de contenido.
+
+21
+00:02:26.659 --> 00:02:36.522
+El CSRF, en cambio, no ejecuta scripts: fuerza una acción usando la cookie de sesión que se envía sola, y se defiende con un token y con SameSite.
+
+22
+00:02:36.522 --> 00:02:45.597
+Un detalle que impresiona: un XSS puede saltarse las protecciones CSRF, porque si ejecutas JavaScript, puedes leer el token.
+
+23
+00:02:45.597 --> 00:02:48.922
+Por eso el XSS es tan peligroso.
+
+24
+00:02:49.918 --> 00:02:56.005
+Y cerramos con el SSRF, Server-Side Request Forgery, la categoría A diez.
+
+25
+00:02:55.955 --> 00:03:01.943
+Aquí consigues que sea el propio servidor el que haga una petición a una URL que tú controlas.
+
+26
+00:03:01.943 --> 00:03:08.893
+Es especialmente grave en la nube, porque el servidor puede acceder a servicios internos o a la metadata del proveedor.
+
+27
+00:03:08.893 --> 00:03:22.805
+El ejemplo clásico es hacer que el servidor pida a la dirección ciento sesenta y nueve punto doscientos cincuenta y cuatro punto ciento sesenta y nueve punto doscientos cincuenta y cuatro, que en muchos entornos cloud devuelve credenciales temporales.
+
+28
+00:03:22.805 --> 00:03:29.768
+La defensa: listas de permitidos de destinos, bloquear las direcciones internas y validar las URLs.
+
+29
+00:03:29.768 --> 00:03:33.080
+Vamos con el control de acceso y las APIs.

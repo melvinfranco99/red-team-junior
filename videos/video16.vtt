@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:05.725
+En este vídeo juntamos las piezas que van de la vulnerabilidad al control del sistema.
+
+2
+00:00:05.675 --> 00:00:16.437
+Verás qué es un exploit, un payload y una shell, la diferencia entre bind y reverse shell, qué es Metasploit, cómo se escalan privilegios y qué son el movimiento lateral y el C2.
+
+3
+00:00:16.437 --> 00:00:20.962
+Son conceptos que un júnior debe conocer para hablar el idioma del equipo.
+
+4
+00:00:21.918 --> 00:00:24.880
+Tres términos que debes separar bien.
+
+5
+00:00:24.830 --> 00:00:31.255
+El exploit es el código que aprovecha una vulnerabilidad concreta: sería la ganzúa que abre la cerradura.
+
+6
+00:00:31.255 --> 00:00:36.893
+El payload es lo que se ejecuta una vez has entrado: lo que haces una vez dentro de la casa.
+
+7
+00:00:36.893 --> 00:00:44.405
+Y la shell es el acceso a la línea de comandos del sistema objetivo: serían las llaves que te permiten moverte por toda la casa.
+
+8
+00:00:44.405 --> 00:00:51.443
+El flujo es: el exploit abre la puerta, el payload te da una shell, y con esa shell ya controlas el equipo.
+
+9
+00:00:51.443 --> 00:00:55.380
+Memoriza esta cadena, porque ordena todo lo demás.
+
+10
+00:00:56.368 --> 00:00:59.268
+Hay dos formas de conseguir esa shell.
+
+11
+00:00:59.218 --> 00:01:04.905
+En la bind shell, la víctima abre un puerto y se queda esperando, y tú te conectas a ella.
+
+12
+00:01:04.905 --> 00:01:11.368
+El problema es que los cortafuegos suelen bloquear las conexiones entrantes, así que a menudo no funciona.
+
+13
+00:01:11.368 --> 00:01:17.693
+En la reverse shell, al revés, es la víctima la que se conecta a tu máquina, que está escuchando con netcat.
+
+14
+00:01:17.693 --> 00:01:26.455
+Como la mayoría de firewalls permiten las conexiones de salida, la reverse shell esquiva mucho mejor las defensas, y por eso es la más usada.
+
+15
+00:01:26.455 --> 00:01:31.193
+Es un concepto que se pregunta con frecuencia: quién inicia la conexión.
+
+16
+00:01:32.162 --> 00:01:39.624
+Metasploit es la navaja suiza de la explotación: un enorme catálogo de exploits y payloads con un flujo de trabajo común.
+
+17
+00:01:39.624 --> 00:01:46.599
+Buscas un exploit con search, lo seleccionas con use, configuras el objetivo con set, y lanzas con exploit.
+
+18
+00:01:46.599 --> 00:01:50.487
+Si todo va bien, se abre una sesión y tienes tu shell.
+
+19
+00:01:50.487 --> 00:01:57.112
+Para generar payloads personalizados, como reverse shells a medida, se usa una utilidad llamada msfvenom.
+
+20
+00:01:57.112 --> 00:02:05.187
+Para un júnior, lo importante es saber qué es Metasploit y reconocer ese flujo de cuatro pasos, no conocer de memoria cada módulo.
+
+21
+00:02:06.156 --> 00:02:11.543
+Una vez dentro como usuario sin privilegios, buscas convertirte en administrador.
+
+22
+00:02:11.493 --> 00:02:22.318
+En Linux, las vías típicas son los binarios con bit SUID, un sudo guion ele demasiado permisivo, tareas programadas que puedes editar, o un kernel con una vulnerabilidad conocida.
+
+23
+00:02:22.318 --> 00:02:30.593
+En Windows, servicios mal configurados, permisos indebidos sobre rutas, o credenciales olvidadas en ficheros y en el registro.
+
+24
+00:02:30.593 --> 00:02:39.806
+Lo bueno es que hay scripts que automatizan esta búsqueda: LinPEAS en Linux y WinPEAS en Windows te delatan las vías de escalada en segundos.
+
+25
+00:02:39.806 --> 00:02:43.156
+Son herramientas que debes conocer por su nombre.
+
+26
+00:02:44.134 --> 00:02:48.321
+Para cerrar el mapa, tres conceptos de post-explotación.
+
+27
+00:02:48.271 --> 00:02:54.059
+El movimiento lateral es saltar de un equipo comprometido a otro, acercándote al objetivo.
+
+28
+00:02:54.059 --> 00:03:01.196
+La persistencia es asegurarte de mantener el acceso aunque el sistema se reinicie, mediante tareas o servicios.
+
+29
+00:03:01.196 --> 00:03:10.034
+Y el C2, de command and control, es la infraestructura desde la que se controlan todos los equipos comprometidos, muy típica en Red Team.
+
+30
+00:03:10.034 --> 00:03:21.634
+Como júnior, raramente harás un ataque de dominio completo el primer día; lo que sí harás es validar vulnerabilidades, lanzar un exploit conocido en laboratorio, conseguir una shell y documentarlo.
+
+31
+00:03:21.634 --> 00:03:25.396
+Todo, siempre, en entornos autorizados.
